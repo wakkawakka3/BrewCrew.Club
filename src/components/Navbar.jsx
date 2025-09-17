@@ -28,7 +28,8 @@ const Navbar = () => {
             Home
           </NavLink>
           <NavLink to="/cafes">Cafés</NavLink>
-          <NavLink to="/blog">Blog</NavLink>
+          <NavLink to="/forum">Forum</NavLink>
+          <NavLink to="/blog">Guide</NavLink>
           <NavLink to="/about-us">About Us</NavLink>
           <NavLink to="/join" className="nav-join-button">
             Join Us

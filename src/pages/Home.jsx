@@ -55,6 +55,36 @@ const useFadeIn = () => {
 const Home = () => {
   const fadeInRefs = useFadeIn();
 
+  // Handle hash navigation when coming from other pages
+  useEffect(() => {
+    const handleHashNavigation = () => {
+      const hash = window.location.hash;
+      if (hash) {
+        const elementId = hash.substring(1); // Remove the # symbol
+        const element = document.getElementById(elementId);
+        if (element) {
+          // Small delay to ensure page is fully loaded
+          setTimeout(() => {
+            element.scrollIntoView({ 
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }, 100);
+        }
+      }
+    };
+
+    // Handle initial hash
+    handleHashNavigation();
+
+    // Listen for hash changes
+    window.addEventListener('hashchange', handleHashNavigation);
+
+    return () => {
+      window.removeEventListener('hashchange', handleHashNavigation);
+    };
+  }, []);
+
   return (
     <div className="page-container">
       <Navbar />
