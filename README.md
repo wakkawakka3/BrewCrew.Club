@@ -38,4 +38,4 @@ Turn coffee from just a drink into an art, hobby, and shared culture by building
 
 ## License
 
-© 2025 Akansh Rawat. All rights reserved. This project is proprietary. No part of this software, including code, design, or content, may be copied, distributed, modified, or used for commercial purposes without explicit written permission from the author. See the LICENSE file for full details.
+© 2025 Akansh Rawat. All rights reserved. This project is proprietary. No part of this software, including code, design, or content, may be copied, distributed, modified, or used for commercial purposes without explicit written permission from the author. See the [LICENSE[(/LICENSE) file for full details.
