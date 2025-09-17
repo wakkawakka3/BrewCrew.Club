@@ -3,8 +3,6 @@ brewcrew.club
 <img align="right" height="60" src="logo.png">
 </h1>
 
-![MIT License](https://img.shields.io/badge/License-MIT-green.svg)
-
 [brewcrew.club](https://brew-crew-club.vercel.app/) is a community-driven platform built for India’s coffee enthusiasts.
 Turn coffee from just a drink into an art, hobby, and shared culture by building a vibrant, review-driven café network in India.
 
@@ -40,4 +38,4 @@ Turn coffee from just a drink into an art, hobby, and shared culture by building
 
 ## License
 
-© 2025 Akansh Rawat. All rights reserved. This project is proprietary. No part of this software, including code, design, or content, may be copied, distributed, modified, or used for commercial purposes without explicit written permission from the author. See the [LICENSE](https://choosealicense.com/licenses/mit/) file for full details.
+© 2025 Akansh Rawat. All rights reserved. This project is proprietary. No part of this software, including code, design, or content, may be copied, distributed, modified, or used for commercial purposes without explicit written permission from the author. See the LICENSE file for full details.
