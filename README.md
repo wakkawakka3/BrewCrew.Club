@@ -1,6 +1,6 @@
 # brewcrew.club
 
-![Logo](https://github.com/wakkawakka3/BrewCrew.Club/blob/main/logo.png)
+<img src="logo.png" alt="Logo" width="120">
 
 ![MIT License](https://img.shields.io/badge/License-MIT-green.svg)
 
