@@ -1,6 +1,6 @@
 <h1>
 # brewcrew.club
-<img src="logo.png" alt="Logo" width="120">
+<img align="center" height="40" src="logo.png">
 </h1>
 
 ![MIT License](https://img.shields.io/badge/License-MIT-green.svg)
