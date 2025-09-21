@@ -31,6 +31,7 @@ const Navbar = () => {
           <NavLink to="/forum">Forum</NavLink>
           <NavLink to="/blog">Guide</NavLink>
           <NavLink to="/about-us">About Us</NavLink>
+          <NavLink to="/profile">Profile</NavLink>
           <NavLink to="/join" className="nav-join-button">
             Join Us
           </NavLink>
