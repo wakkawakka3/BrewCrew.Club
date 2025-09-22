@@ -22,16 +22,13 @@ const Coffee = ({ className }) => (
 const Timer = ({ className }) => (
   <svg
     className={className}
-    fill="none"
-    stroke="currentColor"
     viewBox="0 0 24 24"
+    width="20"
+    height="20"
+    aria-hidden="true"
   >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-    ></path>
+    <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="2" />
+    <path d="M12 6v6l4 2" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
 const Scale = ({ className }) => (
@@ -170,7 +167,7 @@ const brewingMethods = [
   },
   {
     name: "Cold Brew",
-    time: "12-24 hrs",
+    time: "16 hrs",
     difficulty: "Easy",
     ratio: "1:8",
     description: "Smooth, low-acidity coffee concentrate.",
@@ -180,14 +177,13 @@ const brewingMethods = [
     equipment: ["Large jar", "Strainer", "Filters", "Scale"],
     ingredients: ["100g coffee", "800ml water"],
     detailedSteps: [
-      "Combine 100g of extra coarse coffee with 800ml of water in a jar.",
-      "Stir, cover, and let it steep for 12-24 hours.",
-      "Strain the concentrate through a fine mesh strainer.",
-      "Filter again through a paper filter for clarity.",
-      "Dilute 1:1 with water or milk and serve over ice.",
+      "Combine 100g of extra coarse coffee with 800ml of water in a jar (1:8).",
+      "Stir, cover, and steep at room temperature for 16 hours.",
+      "Strain through a fine mesh, then filter through a paper filter for clarity.",
+      "Dilute to taste (start 1:1 with water or milk) and serve over ice.",
     ],
     tips: [
-      "Longer steeping creates a stronger concentrate.",
+      "If bitter, shorten steep or coarsen the grind; if weak, lengthen steep slightly.",
       "Store in the fridge for up to 2 weeks.",
     ],
   },

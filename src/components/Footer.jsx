@@ -52,22 +52,6 @@ const Footer = () => {
             </li>
             <li>
               <button 
-                onClick={() => handleHomeSectionClick('how-it-works')}
-                className="footer-link-button"
-              >
-                How It Works
-              </button>
-            </li>
-            <li>
-              <button 
-                onClick={() => handleHomeSectionClick('community')}
-                className="footer-link-button"
-              >
-                Community
-              </button>
-            </li>
-            <li>
-              <button 
                 onClick={() => handleHomeSectionClick('contact')}
                 className="footer-link-button"
               >
@@ -80,10 +64,10 @@ const Footer = () => {
         <div className="footer-section">
           <h4>Resources</h4>
           <ul>
-            <li><Link to="/cafes">Café Discovery</Link></li>
-            <li><Link to="/forum">Community Forum</Link></li>
             <li><Link to="/blog">Brewing Guides</Link></li>
-            <li><Link to="/about-us">About Us</Link></li>
+            <li><Link to="/forum">Community Forum</Link></li>
+            <li><Link to="/cafes">Café Discovery</Link></li>
+            <li><Link to="/join">Join BrewCrew</Link></li>
           </ul>
         </div>
         

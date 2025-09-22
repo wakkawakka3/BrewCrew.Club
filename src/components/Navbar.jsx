@@ -8,6 +8,8 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
+  const linkClass = ({ isActive }) => (isActive ? "active" : "");
+
   return (
     <nav className="navbar">
       <div className="container nav-wrapper">
@@ -24,17 +26,14 @@ const Navbar = () => {
         </button>
 
         <div className={`nav-links ${isOpen ? "is-open" : ""}`}>
-          <NavLink to="/" end>
-            Home
-          </NavLink>
-          <NavLink to="/cafes">Cafés</NavLink>
-          <NavLink to="/forum">Forum</NavLink>
-          <NavLink to="/blog">Guide</NavLink>
-          <NavLink to="/about-us">About Us</NavLink>
-          <NavLink to="/profile">Profile</NavLink>
-          <NavLink to="/join" className="nav-join-button">
-            Join Us
-          </NavLink>
+          <NavLink to="/" end className={linkClass}>Home</NavLink>
+          <NavLink to="/cafes" className={linkClass}>Cafés</NavLink>
+          <NavLink to="/forum" className={linkClass}>Forum</NavLink>
+          <NavLink to="/blog" className={linkClass}>Guide</NavLink>
+          <NavLink to="/about-us" className={linkClass}>About Us</NavLink>
+          <NavLink to="/profile" className={linkClass}>Profile</NavLink>
+          <span className="nav-divider" aria-hidden="true"></span>
+          <NavLink to="/join" className="nav-join-button">Join Us</NavLink>
         </div>
       </div>
     </nav>
