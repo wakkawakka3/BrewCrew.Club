@@ -3,7 +3,7 @@
 import React, { useState, useMemo } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import '../index.css';
+import "../index.css";
 
 // --- SVG Icon Components ---
 const Search = ({ className, style }) => (
@@ -214,7 +214,10 @@ const ForumHero = ({ onNewDiscussionClick }) => (
     <div className="container">
       <div className="hero-content">
         <h1>Coffee Community Forum</h1>
-        <p>Share your coffee discoveries, ask questions, and connect with fellow enthusiasts.</p>
+        <p>
+          Share your coffee discoveries, ask questions, and connect with fellow
+          enthusiasts.
+        </p>
         <button onClick={onNewDiscussionClick} className="cta-button">
           <Plus style={{ width: "20px", height: "20px" }} />
           <span>Start New Discussion</span>
@@ -425,7 +428,10 @@ const Forum = () => {
     <>
       <Navbar />
       <ForumHero onNewDiscussionClick={() => setShowNewPost(!showNewPost)} />
-      <div className="default-main" style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
+      <div
+        className="default-main"
+        style={{ paddingTop: "2rem", paddingBottom: "2rem" }}
+      >
         <div className="container">
           <div className="forum-layout">
             <ForumSidebar

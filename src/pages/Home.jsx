@@ -65,9 +65,9 @@ const Home = () => {
         if (element) {
           // Small delay to ensure page is fully loaded
           setTimeout(() => {
-            element.scrollIntoView({ 
-              behavior: 'smooth',
-              block: 'start'
+            element.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
             });
           }, 100);
         }
@@ -78,10 +78,10 @@ const Home = () => {
     handleHashNavigation();
 
     // Listen for hash changes
-    window.addEventListener('hashchange', handleHashNavigation);
+    window.addEventListener("hashchange", handleHashNavigation);
 
     return () => {
-      window.removeEventListener('hashchange', handleHashNavigation);
+      window.removeEventListener("hashchange", handleHashNavigation);
     };
   }, []);
 

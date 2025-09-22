@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import '../index.css';
+import "../index.css";
 
 // --- SVG Icon Components ---
 const Coffee = ({ className }) => (
@@ -27,8 +27,22 @@ const Timer = ({ className }) => (
     height="20"
     aria-hidden="true"
   >
-    <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="2" />
-    <path d="M12 6v6l4 2" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <circle
+      cx="12"
+      cy="12"
+      r="9"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+    />
+    <path
+      d="M12 6v6l4 2"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 const Scale = ({ className }) => (
@@ -218,7 +232,12 @@ const brewingMethods = [
     temperature: "Cold",
     grindSize: "Fine (espresso) or strong brewed",
     equipment: ["Blender", "Espresso machine or brewer"],
-    ingredients: ["1 shot espresso or 120ml strong coffee", "1 cup ice", "120ml milk", "Sweetener to taste"],
+    ingredients: [
+      "1 shot espresso or 120ml strong coffee",
+      "1 cup ice",
+      "120ml milk",
+      "Sweetener to taste",
+    ],
     detailedSteps: [
       "Brew espresso or strong coffee and cool briefly.",
       "Blend coffee, ice, milk, and sweetener until smooth.",
@@ -294,30 +313,36 @@ const HistorySection = () => (
 
 const BrewingMethodCard = ({ method, onSelect }) => {
   const Icon = method.icon;
-  
+
   const handleClick = () => {
     onSelect(method);
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
+    if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
       onSelect(method);
     }
   };
 
   return (
-    <div 
-      className="cafe-card" 
+    <div
+      className="cafe-card"
       onClick={handleClick}
       onKeyDown={handleKeyDown}
       tabIndex={0}
       role="button"
       aria-label={`Learn about ${method.name} brewing method`}
-      style={{ cursor: 'pointer' }}
+      style={{ cursor: "pointer" }}
     >
       <div className="cafe-card-img">
-        <Icon style={{ width: '48px', height: '48px', color: 'var(--accent-color)' }} />
+        <Icon
+          style={{
+            width: "48px",
+            height: "48px",
+            color: "var(--accent-color)",
+          }}
+        />
       </div>
       <div className="cafe-card-content">
         <h3>{method.name}</h3>
@@ -366,7 +391,7 @@ const BrewingMethodCard = ({ method, onSelect }) => {
 const BrewingMethodModal = ({ method, onClose }) => {
   if (!method) return null;
   const Icon = method.icon;
-  
+
   const handleOverlayClick = (e) => {
     if (e.target === e.currentTarget) {
       onClose();
@@ -374,21 +399,21 @@ const BrewingMethodModal = ({ method, onClose }) => {
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === 'Escape') {
+    if (e.key === "Escape") {
       onClose();
     }
   };
 
   return (
-    <div 
-      className="modal-overlay" 
+    <div
+      className="modal-overlay"
       onClick={handleOverlayClick}
       onKeyDown={handleKeyDown}
       tabIndex={-1}
     >
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <button 
-          className="modal-close-button" 
+        <button
+          className="modal-close-button"
           onClick={onClose}
           aria-label="Close modal"
         >
