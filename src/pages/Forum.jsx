@@ -1,9 +1,8 @@
 // src/pages/Forum.js
 
 import React, { useState, useMemo } from "react";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import "../index.css";
+import Layout from "../components/Layout";
+// Global styles are already imported in main.jsx; avoid redundant imports.
 
 // --- SVG Icon Components ---
 const Search = ({ className, style }) => (
@@ -149,6 +148,21 @@ const Share2 = ({ className }) => (
     <line x1="12" y1="2" x2="12" y2="15"></line>
   </svg>
 );
+const MoreHorizontal = ({ className }) => (
+  <svg
+    className={className}
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    viewBox="0 0 24 24"
+  >
+    <circle cx="5" cy="12" r="1"></circle>
+    <circle cx="12" cy="12" r="1"></circle>
+    <circle cx="19" cy="12" r="1"></circle>
+  </svg>
+);
 
 // --- Data ---
 const forumPosts = [
@@ -214,12 +228,9 @@ const ForumHero = ({ onNewDiscussionClick }) => (
     <div className="container">
       <div className="hero-content">
         <h1>Coffee Community Forum</h1>
-        <p>
-          Share your coffee discoveries, ask questions, and connect with fellow
-          enthusiasts.
-        </p>
+        <p>Share your coffee discoveries, ask questions, and connect with fellow enthusiasts.</p>
         <button onClick={onNewDiscussionClick} className="cta-button">
-          <Plus style={{ width: "20px", height: "20px" }} />
+          <Plus className="icon icon-20" />
           <span>Start New Discussion</span>
         </button>
       </div>
@@ -237,15 +248,7 @@ const ForumSidebar = ({
     <div className="sidebar-widget">
       <div style={{ position: "relative" }}>
         <Search
-          style={{
-            position: "absolute",
-            left: "1rem",
-            top: "50%",
-            transform: "translateY(-50%)",
-            width: "1rem",
-            height: "1rem",
-            color: "#999",
-          }}
+          className="icon icon-16 icon-muted search-icon"
         />
         <input
           type="text"
@@ -259,13 +262,7 @@ const ForumSidebar = ({
     </div>
     <div className="sidebar-widget">
       <h3>
-        <Filter
-          style={{
-            color: "var(--accent-color)",
-            width: "1.2rem",
-            height: "1.2rem",
-          }}
-        />
+        <Filter className="icon icon-18 icon-accent" />
         Categories
       </h3>
       <div>
@@ -284,13 +281,7 @@ const ForumSidebar = ({
     </div>
     <div className="sidebar-widget">
       <h3>
-        <TrendingUp
-          style={{
-            color: "var(--accent-color)",
-            width: "1.2rem",
-            height: "1.2rem",
-          }}
-        />
+        <TrendingUp className="icon icon-18 icon-accent" />
         Trending
       </h3>
       <div className="trending-tags">
@@ -367,19 +358,22 @@ const ForumPostCard = ({ post }) => (
               <span>{post.username}</span>
               <span>•</span>
               <span>
-                <Clock style={{ width: "1em", height: "1em" }} /> {post.time}
+                <Clock className="icon icon-16" /> {post.time}
               </span>
               <span>•</span>
               <span>
-                <MapPin style={{ width: "1em", height: "1em" }} />{" "}
+                <MapPin className="icon icon-16" />{" "}
                 {post.location}
               </span>
             </div>
           </div>
         </div>
+        <button className="post-menu-button" aria-label="More options">
+          <MoreHorizontal className="icon icon-18" />
+        </button>
         {post.trending && (
           <div className="trending-badge">
-            <TrendingUp style={{ width: "1em", height: "1em" }} /> Trending
+            <TrendingUp className="icon icon-16" /> Trending
           </div>
         )}
       </div>
@@ -387,16 +381,16 @@ const ForumPostCard = ({ post }) => (
       <span className="post-category">{post.category}</span>
       <div className="post-actions">
         <div className="action-buttons">
-          <button>
-            <Heart style={{ width: "18px", height: "18px" }} />
+          <button aria-label="Like post" className="icon-button">
+            <Heart className="icon icon-18" />
             <span>{post.likes}</span>
           </button>
-          <button>
-            <MessageCircle style={{ width: "18px", height: "18px" }} />
+          <button aria-label="Comment" className="icon-button">
+            <MessageCircle className="icon icon-18" />
             <span>{post.comments}</span>
           </button>
-          <button>
-            <Share2 style={{ width: "18px", height: "18px" }} />
+          <button aria-label="Share" className="icon-button">
+            <Share2 className="icon icon-18" />
             <span>Share</span>
           </button>
         </div>
@@ -425,39 +419,32 @@ const Forum = () => {
   }, [searchQuery, selectedCategory]);
 
   return (
-    <>
-      <Navbar />
+    <Layout>
       <ForumHero onNewDiscussionClick={() => setShowNewPost(!showNewPost)} />
-      <div
-        className="default-main"
-        style={{ paddingTop: "2rem", paddingBottom: "2rem" }}
-      >
-        <div className="container">
-          <div className="forum-layout">
-            <ForumSidebar
-              selectedCategory={selectedCategory}
-              setSelectedCategory={setSelectedCategory}
-              searchQuery={searchQuery}
-              setSearchQuery={setSearchQuery}
-            />
-            <div className="forum-main-content">
-              {showNewPost && (
-                <NewPostForm onCancel={() => setShowNewPost(false)} />
-              )}
-              {filteredPosts.map((post) => (
-                <ForumPostCard key={post.id} post={post} />
-              ))}
-              <div style={{ textAlign: "center", paddingTop: "2rem" }}>
-                <button className="load-more-button">
-                  Load More Discussions
-                </button>
-              </div>
+      <div className="container">
+        <div className="forum-layout">
+          <ForumSidebar
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+          />
+          <div className="forum-main-content">
+            {showNewPost && (
+              <NewPostForm onCancel={() => setShowNewPost(false)} />
+            )}
+            {filteredPosts.map((post) => (
+              <ForumPostCard key={post.id} post={post} />
+            ))}
+            <div style={{ textAlign: "center", paddingTop: "2rem" }}>
+              <button className="load-more-button">
+                Load More Discussions
+              </button>
             </div>
           </div>
         </div>
       </div>
-      <Footer />
-    </>
+    </Layout>
   );
 };
 
