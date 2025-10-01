@@ -2,11 +2,11 @@ import React from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
 
-const Layout = ({ children }) => {
+const Layout = ({ children, noPadding }) => {
   return (
     <div className="page-wrapper">
       <Navbar />
-      <main className="default-main">
+      <main className={noPadding ? '' : 'default-main'}>
         {children}
       </main>
       <Footer />

@@ -60,7 +60,7 @@ const Profile = () => {
   };
 
   return (
-    <Layout>
+    <Layout noPadding>
       <div className="profile-page">
         {/* Cover Image */}
         <div className="cover-section"><div className="cover-image" /></div>
@@ -77,8 +77,8 @@ const Profile = () => {
                                     <img src={user.profileImage} alt={user.name} className="profile-avatar" />
                                 </div>
                                 <div className="profile-name-section">
-                                    <h1 className="profile-name">{user.name}</h1>
-                                    <p className="profile-username">{user.username}</p>
+                                    <h1 className="profile-name animate-fade-in-up">{user.name}</h1>
+                                    <p className="profile-username animate-fade-in-up-delayed">{user.username}</p>
                                 </div>
                                 <p className="profile-bio">{user.bio}</p>
                                 <div className="profile-meta">
@@ -222,7 +222,7 @@ const Profile = () => {
       </div>
 
       <style jsx>{`
-        .profile-page { background: var(--background-color); min-height: 100vh; margin-top:-2rem; }
+        .profile-page { background: var(--background-color); min-height: 100vh; }
         .cover-section { position: relative; height: 240px; overflow: hidden; }
         .cover-image { width: 100%; height: 100%; background: linear-gradient(135deg, #7a3b17 0%, #a0572f 50%, #c07a4a 100%); background-size: cover; background-position: center; }
         

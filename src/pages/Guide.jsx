@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Layout from "../components/Layout";
 import "../index.css";
 
 // --- SVG Icon Components ---
@@ -267,48 +266,10 @@ const getBadgeClass = (difficulty) => {
 // --- Sub-components ---
 
 const GuideHeader = () => (
-  <header className="page-header">
-    <h1>Coffee Guide</h1>
-    <p>
-      Discover coffee's history, explore its origins, and master the art of
-      brewing.
-    </p>
+  <header className="page-header text-center">
+    <h1>The Ultimate Coffee Guide</h1>
+    <p>From bean to brew, your journey to coffee mastery starts here.</p>
   </header>
-);
-
-const HistorySection = () => (
-  <section className="section">
-    <h2>
-      <Coffee className="heading-icon" />
-      The History of Coffee
-    </h2>
-    <div
-      className="content-wrapper"
-      style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        gap: "2rem",
-        marginTop: "3rem",
-      }}
-    >
-      <div className="brand-story">
-        <h3>Ancient Origins</h3>
-        <p>
-          Legend traces coffee's discovery to an Ethiopian goat herder around
-          850 CE. Its cultivation then spread through Yemen and the Ottoman
-          Empire.
-        </p>
-      </div>
-      <div className="brand-story">
-        <h3>Modern Coffee Culture</h3>
-        <p>
-          The "third wave" movement treats coffee as an artisanal craft,
-          emphasizing origin, processing, and brewing methods for the best
-          flavor.
-        </p>
-      </div>
-    </div>
-  </section>
 );
 
 const BrewingMethodCard = ({ method, onSelect }) => {
@@ -398,18 +359,22 @@ const BrewingMethodModal = ({ method, onClose }) => {
     }
   };
 
-  const handleKeyDown = (e) => {
-    if (e.key === "Escape") {
-      onClose();
-    }
-  };
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [onClose]);
 
   return (
     <div
       className="modal-overlay"
       onClick={handleOverlayClick}
-      onKeyDown={handleKeyDown}
-      tabIndex={-1}
+      role="dialog"
+      aria-modal="true"
     >
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <button
@@ -419,17 +384,15 @@ const BrewingMethodModal = ({ method, onClose }) => {
         >
           &times;
         </button>
-        <div className="page-header" style={{ marginBottom: "1.5rem" }}>
+        <header className="modal-header">
           <h1>
             <Icon className="heading-icon" />
             {method.name}
           </h1>
           <p>{method.description}</p>
-        </div>
+        </header>
         <div className="modal-grid">
-          <div
-            style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}
-          >
+          <div className="modal-col-left">
             <div className="modal-card">
               <h3>Quick Info</h3>
               <ul className="quick-info-list">
@@ -470,9 +433,7 @@ const BrewingMethodModal = ({ method, onClose }) => {
               </ul>
             </div>
           </div>
-          <div
-            style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}
-          >
+          <div className="modal-col-right">
             <div className="modal-card">
               <h3>Instructions</h3>
               <ol>
@@ -511,15 +472,13 @@ const Guide = () => {
   }, [selectedMethod]);
 
   return (
-    <>
-      <Navbar />
-      <div className="default-main">
+    <Layout>
+      <div className="guide-page">
+        <GuideHeader />
         <div className="container">
-          <GuideHeader />
-          <HistorySection />
-          <section className="section">
-            <h2>Brewing Methods</h2>
-            <p>Click a method to see the full guide.</p>
+          <section className="section-enhanced">
+            <h2 className="section-title-enhanced">Brewing Methods</h2>
+            <p className="section-subtitle-enhanced">Click a method to see the full guide.</p>
             <div className="cafe-grid" style={{ marginTop: "3rem" }}>
               {brewingMethods.map((method) => (
                 <BrewingMethodCard
@@ -532,12 +491,172 @@ const Guide = () => {
           </section>
         </div>
       </div>
-      <Footer />
       <BrewingMethodModal
         method={selectedMethod}
         onClose={() => setSelectedMethod(null)}
       />
-    </>
+       <style jsx>{`
+        /* Page Structure */
+        .guide-page {
+            padding-top: 2rem;
+            padding-bottom: 4rem;
+        }
+        .page-header {
+            margin-bottom: 4rem;
+        }
+        .section-enhanced {
+          margin-bottom: 4rem;
+        }
+        .section-title-enhanced {
+          font-size: 2.5rem;
+          font-weight: 700;
+          color: var(--primary-color);
+          text-align: center;
+          margin-bottom: 1rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 1rem;
+        }
+        .section-subtitle-enhanced {
+          text-align: center;
+          font-size: 1.1rem;
+          color: var(--text-muted);
+          margin-bottom: 3rem;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(0, 0, 0, 0.7);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 1000;
+          animation: fadeIn 0.3s ease-out;
+        }
+        .modal-content {
+          background: var(--secondary-color);
+          padding: 2.5rem;
+          border-radius: var(--border-radius-xl);
+          width: 90%;
+          max-width: 900px;
+          max-height: 90vh;
+          overflow-y: auto;
+          position: relative;
+          animation: slideUp 0.4s ease-out;
+        }
+        .modal-close-button {
+          position: absolute;
+          top: 1.5rem;
+          right: 1.5rem;
+          background: none;
+          border: none;
+          font-size: 2rem;
+          cursor: pointer;
+          color: var(--text-muted);
+        }
+        .modal-header {
+          text-align: center;
+          margin-bottom: 2rem;
+          border-bottom: 1px solid var(--border-color);
+          padding-bottom: 1.5rem;
+        }
+        .modal-header h1 {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 1rem;
+          font-size: 2.25rem;
+        }
+        .modal-grid {
+          display: grid;
+          grid-template-columns: 1fr 1.5fr;
+          gap: 2rem;
+        }
+        .modal-card {
+          background: var(--off-white);
+          border: 1px solid var(--border-color);
+          border-radius: var(--border-radius-lg);
+          padding: 1.5rem;
+          margin-bottom: 1.5rem; 
+        }
+        .modal-card h3 {
+          font-size: 1.4rem;
+          margin-bottom: 1.25rem;
+          border-bottom: 1px solid var(--border-color);
+          padding-bottom: 0.75rem;
+        }
+        .modal-card h4 {
+          font-size: 1.1rem;
+          color: var(--primary-color);
+        }
+        .modal-col-left, .modal-col-right {
+            display: flex;
+            flex-direction: column;
+        }
+        .quick-info-list {
+            list-style: none;
+            padding: 0;
+        }
+        .quick-info-list li {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+        }
+        ul, ol {
+            padding-left: 20px;
+        }
+
+        /* Badge Styles */
+        .badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .badge-easy {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .badge-medium {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+        }
+        .badge-hard {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        @media (max-width: 768px) {
+          .modal-grid {
+            grid-template-columns: 1fr;
+          }
+          .modal-content {
+             padding: 1.5rem;
+          }
+        }
+
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+          from { transform: translateY(30px); opacity: 0; }
+          to { transform: translateY(0); opacity: 1; }
+        }
+
+      `}</style>
+    </Layout>
   );
 };
 
