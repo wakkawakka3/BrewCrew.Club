@@ -497,7 +497,8 @@ const Home = () => {
         font-size: 0.95rem;
     }
     .cta-button-dark:hover {
-        background-color: #333;
+        background-color: #FFC72C;
+        color: #1a1a1a;
     }
 
     /* Community Stats Card */
