@@ -1,9 +1,40 @@
+import React, { useState } from "react";
+import Layout from "../components/Layout";
 
-import React, { useState } from 'react';
-import Layout from '../components/Layout';
-import FavoriteCafes from '../components/FavoriteCafes';
+// --- SVG Icon Components ---
+const LikeIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+  </svg>
+);
 
-// Mock data - in a real app, this would come from a backend
+const CommentIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+  </svg>
+);
+
+// --- Mock Data ---
 const initialUser = {
   name: "Akansh Rawat",
   location: "Mumbai, India",
@@ -15,135 +46,278 @@ const initialUser = {
     checkIns: 67,
     followers: 23,
     points: 890,
-  }
+  },
 };
 
-const activities = [
-  { id: 1, type: 'review', content: 'Amazing Ethiopian pour over! The fruity notes really came through.', cafe: 'Reviewed Blue Tokai Coffee Roasters', rating: 5, timestamp: '2 hours ago' },
-  { id: 2, type: 'check-in', content: 'Checked in at Third Wave Coffee', timestamp: '1 day ago' },
-  { id: 3, type: 'discussion', content: 'Started discussion: Best Cold Brew Recipe?', timestamp: '2 days ago' },
+const userPosts = [
+  {
+    id: 1,
+    content:
+      "Just had the most amazing cold brew at a small cafe in Bandra. The flavor was so rich and smooth. #coldbrew #mumbaicafe",
+    likes: 45,
+    commentsCount: 7,
+    timestamp: "1 day ago",
+  },
+  {
+    id: 2,
+    content:
+      "What are your thoughts on robusta vs. arabica beans for a morning espresso?",
+    likes: 102,
+    commentsCount: 23,
+    timestamp: "3 days ago",
+  },
+  {
+    id: 3,
+    content:
+      "My home coffee station is finally complete! Rocking a new grinder and a pour-over kit. ☕️",
+    likes: 231,
+    commentsCount: 18,
+    timestamp: "5 days ago",
+  },
+  {
+    id: 4,
+    content:
+      "Exploring the coffee culture in Chikmagalur. The plantations are breathtaking!",
+    likes: 88,
+    commentsCount: 11,
+    timestamp: "1 week ago",
+  },
+  {
+    id: 5,
+    content:
+      "Debating whether to get a Coffee Pass subscription. Is it worth it for daily coffee drinkers?",
+    likes: 32,
+    commentsCount: 15,
+    timestamp: "2 weeks ago",
+  },
 ];
 
-const favoriteCafes = [
-  { id: 1, name: "Blue Tokai Coffee", location: "Delhi", visits: 12 },
-  { id: 2, name: "Subko Coffee", location: "Mumbai", visits: 8 },
-  { id: 3, name: "Third Wave Coffee", location: "Bangalore", visits: 15 },
+const userReviews = [
+  {
+    id: 1,
+    cafe: "Blue Tokai Coffee Roasters",
+    rating: 5,
+    content:
+      "Amazing Ethiopian pour over! The fruity notes really came through. A must-visit for any coffee lover.",
+    timestamp: "2 hours ago",
+  },
+  {
+    id: 2,
+    cafe: "Third Wave Coffee",
+    rating: 4,
+    content:
+      "Great ambiance and a solid cup of coffee. The flat white was well-made, though a bit crowded.",
+    timestamp: "1 week ago",
+  },
+  {
+    id: 3,
+    cafe: "Subko Coffee",
+    rating: 5,
+    content:
+      "The best croissants in Mumbai, and their specialty coffee is next level. The attention to detail is impressive.",
+    timestamp: "2 weeks ago",
+  },
+  {
+    id: 4,
+    cafe: "Sleepy Owl",
+    rating: 4,
+    content:
+      "Love their cold brew packs for home. Convenient and consistently good.",
+    timestamp: "1 month ago",
+  },
+  {
+    id: 5,
+    cafe: "Café Coffee Day",
+    rating: 3,
+    content:
+      "A classic spot for a quick coffee. Not specialty, but reliable and has a comfortable seating area.",
+    timestamp: "1 month ago",
+  },
 ];
 
-// Helper components for better structure
-const StatItem = ({ value, label, icon }) => (
-  <div className="stat">
-    {icon}
+const userComments = [
+  {
+    id: 1,
+    onPost: "Best Cold Brew Recipe?",
+    content:
+      "I use a 1:8 ratio and let it steep for 18 hours in the fridge. Comes out perfect!",
+    timestamp: "6 hours ago",
+  },
+  {
+    id: 2,
+    onPost: "Single-origin Ethiopian coffee",
+    content:
+      "You should try the one from Koinonia Coffee Roasters too! They have some great options.",
+    timestamp: "1 day ago",
+  },
+  {
+    id: 3,
+    onPost: "Latte art classes in Bangalore",
+    content:
+      "I took a class at the Third Wave Coffee academy, it was fantastic and very hands-on.",
+    timestamp: "4 days ago",
+  },
+  {
+    id: 4,
+    onPost: "Thoughts on robusta vs. arabica?",
+    content:
+      "For espresso, a blend with a small percentage of high-quality robusta can give you an amazing crema!",
+    timestamp: "5 days ago",
+  },
+  {
+    id: 5,
+    onPost: "Home coffee station complete!",
+    content: "That grinder is a beast! Congrats on the setup.",
+    timestamp: "6 days ago",
+  },
+];
+
+// --- UI Components ---
+const StatItem = ({ value, label }) => (
+  <div className="stat-item">
     <div className="stat-value">{value}</div>
     <div className="stat-label">{label}</div>
   </div>
 );
 
-const BadgeItem = ({ label, icon }) => (
-    <div className="badge">
-        {icon}
-        <span>{label}</span>
+const BadgeItem = ({ label }) => <div className="badge-item">{label}</div>;
+
+const PostItem = ({ post }) => (
+  <div className="content-item-card">
+    <p className="post-content">{post.content}</p>
+    <div className="item-meta">
+      <div className="post-actions">
+        <div className="action-item">
+          <LikeIcon />
+          <span>{post.likes}</span>
+        </div>
+        <div className="action-item">
+          <CommentIcon />
+          <span>{post.commentsCount}</span>
+        </div>
+      </div>
+      <span className="timestamp">{post.timestamp}</span>
     </div>
+  </div>
+);
+
+const ReviewItem = ({ review }) => (
+  <div className="content-item-card">
+    <div className="review-header">
+      <h4 className="cafe-name">{review.cafe}</h4>
+      <div className="rating">
+        {"★".repeat(review.rating)}
+        {"☆".repeat(5 - review.rating)}
+      </div>
+    </div>
+    <p className="review-content">{review.content}</p>
+    <div className="item-meta">
+      <span className="timestamp">{review.timestamp}</span>
+    </div>
+  </div>
+);
+
+const CommentItem = ({ comment }) => (
+  <div className="content-item-card">
+    <p className="comment-context">On post: "{comment.onPost}"</p>
+    <p className="comment-content">{comment.content}</p>
+    <div className="item-meta">
+      <span className="timestamp">{comment.timestamp}</span>
+    </div>
+  </div>
 );
 
 const Profile = () => {
-  const [activeTab, setActiveTab] = useState('recent');
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [user, setUser] = useState(initialUser);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editedUser, setEditedUser] = useState(user);
+  const [activeTab, setActiveTab] = useState("posts");
 
+  // Modal handling
   const handleEditProfile = () => {
     setEditedUser(user);
     setIsEditModalOpen(true);
   };
-
   const handleCloseModal = () => setIsEditModalOpen(false);
-
   const handleSaveProfile = () => {
     setUser(editedUser);
     setIsEditModalOpen(false);
   };
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setEditedUser(prevState => ({ ...prevState, [name]: value }));
+    setEditedUser((prevState) => ({ ...prevState, [name]: value }));
   };
-  
-  const renderActivityIcon = (type) => {
-    switch (type) {
-      case 'review': return '⭐';
-      case 'check-in': return '☕';
-      case 'discussion': return '💬';
-      default: return '➡️';
-    }
-  };
-
 
   return (
     <Layout>
-      <div className="profile-page">
-        <div className="profile-header-container">
-          <div className="profile-header">
-            <div className="avatar-section">
-              <img src={user.profileImage} alt={user.name} className="profile-avatar" />
-            </div>
-            <div className="user-info">
-              <div className="name-edit-section">
-                <h1 className="user-name">{user.name}</h1>
-                <button className="edit-profile-btn" onClick={handleEditProfile}>
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M12.2929 1.70711C12.6834 1.31658 13.3166 1.31658 13.7071 1.70711L14.2929 2.29289C14.6834 2.68342 14.6834 3.31658 14.2929 3.70711L4.41421 13.5858C4.22383 13.7762 3.96929 13.881 3.70711 13.881H2.11895C1.84318 13.881 1.61895 13.6568 1.61895 13.381V11.7929C1.61895 11.5307 1.72383 11.2762 1.91421 11.0858L11.7929 1.20711C11.7929 1.20711 12.2929 1.70711 12.2929 1.70711ZM11.5 4.5L10 6L8.5 4.5L10 3L11.5 4.5Z" /></svg>
-                  <span>Edit Profile</span>
-                </button>
-              </div>
-              <p className="user-location">{user.location}</p>
-              <p className="user-bio">{user.bio}</p>
-            </div>
+      <div className="profile-page-container">
+        <div className="profile-card">
+          <div className="profile-card-header">
+            <img
+              src={user.profileImage}
+              alt={user.name}
+              className="profile-avatar"
+            />
           </div>
-            <div className="user-stats-container">
-                <div className="user-stats">
-                    <StatItem value={user.stats.reviews} label="Reviews" icon={<svg className="stat-icon" viewBox="0 0 24 24"><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"/></svg>} />
-                    <StatItem value={user.stats.checkIns} label="Check-ins" icon={<svg className="stat-icon" viewBox="0 0 24 24"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/></svg>} />
-                    <StatItem value={user.stats.followers} label="Followers" icon={<svg className="stat-icon" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>} />
-                    <StatItem value={user.stats.points} label="Points" icon={<svg className="stat-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>} />
-                </div>
-            </div>
-            <div className="user-badges-container">
-                <div className="user-badges">
-                {user.badges.map(badge => <BadgeItem key={badge} label={badge} icon={<svg className="badge-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-3.5-3.5 1.41-1.41L11 13.17l5.59-5.59L18 9l-7 7z"/></svg>} /> )}
-                </div>
-            </div>
-        </div>
-
-        <div className="activity-section">
-          <div className="activity-tabs">
-            <button className={activeTab === 'recent' ? 'active' : ''} onClick={() => setActiveTab('recent')}>Recent Activity</button>
-            <button className={activeTab === 'favorites' ? 'active' : ''} onClick={() => setActiveTab('favorites')}>Favorite Cafés</button>
-            <button className={activeTab === 'reviews' ? 'active' : ''} onClick={() => setActiveTab('reviews')}>Reviews</button>
+          <div className="profile-info">
+            <h1 className="user-name">{user.name}</h1>
+            <p className="user-location">{user.location}</p>
+            <p className="user-bio">{user.bio}</p>
           </div>
 
-          <div className="activity-content">
-            {activeTab === 'recent' && (
-              <div className="recent-activity-list">
-                {activities.map(activity => (
-                  <div key={activity.id} className="activity-item">
-                    <div className="activity-icon">{renderActivityIcon(activity.type)}</div>
-                    <div className="activity-details">
-                      <p>{activity.cafe || activity.content}
-                        {activity.type === 'review' && 
-                            <div className='review-content'>
-                                <div className="rating">{'★'.repeat(activity.rating)}{'☆'.repeat(5 - activity.rating)}</div>
-                                <p className='review-text'>{activity.content}</p>
-                            </div>
-                        }
-                      </p>
-                    </div>
-                    <span className="activity-timestamp">{activity.timestamp}</span>
-                  </div>
+          <div className="profile-stats">
+            <StatItem value={user.stats.reviews} label="Reviews" />
+            <StatItem value={user.stats.checkIns} label="Check-ins" />
+            <StatItem value={user.stats.followers} label="Followers" />
+            <StatItem value={user.stats.points} label="Points" />
+          </div>
+
+          <div className="profile-badges">
+            <h3 className="section-title">Badges</h3>
+            <div className="badges-container">
+              {user.badges.map((badge) => (
+                <BadgeItem key={badge} label={badge} />
+              ))}
+            </div>
+          </div>
+
+          <button className="edit-profile-btn" onClick={handleEditProfile}>
+            Edit Profile
+          </button>
+
+          <div className="profile-content-section">
+            <div className="content-tabs">
+              <button
+                className={activeTab === "posts" ? "active" : ""}
+                onClick={() => setActiveTab("posts")}
+              >
+                Posts
+              </button>
+              <button
+                className={activeTab === "reviews" ? "active" : ""}
+                onClick={() => setActiveTab("reviews")}
+              >
+                Reviews
+              </button>
+              <button
+                className={activeTab === "comments" ? "active" : ""}
+                onClick={() => setActiveTab("comments")}
+              >
+                Comments
+              </button>
+            </div>
+            <div className="content-list">
+              {activeTab === "posts" &&
+                userPosts.map((post) => <PostItem key={post.id} post={post} />)}
+              {activeTab === "reviews" &&
+                userReviews.map((review) => (
+                  <ReviewItem key={review.id} review={review} />
                 ))}
-              </div>
-            )}
-            {activeTab === 'favorites' && <FavoriteCafes cafes={favoriteCafes} />}
-            {activeTab === 'reviews' && <div className="placeholder-content">Reviews are coming soon.</div>}
+              {activeTab === "comments" &&
+                userComments.map((comment) => (
+                  <CommentItem key={comment.id} comment={comment} />
+                ))}
+            </div>
           </div>
         </div>
       </div>
@@ -151,297 +325,312 @@ const Profile = () => {
       {isEditModalOpen && (
         <div className="modal-overlay" onClick={handleCloseModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-header">
-              <h2>Edit Profile</h2>
-              <button className="close-btn" onClick={handleCloseModal}>&times;</button>
-            </div>
+            <h2>Edit Profile</h2>
+            <button className="close-btn" onClick={handleCloseModal}>
+              &times;
+            </button>
             <div className="form-group">
               <label>Name</label>
-              <input type="text" name="name" value={editedUser.name} onChange={handleInputChange} />
+              <input
+                type="text"
+                name="name"
+                value={editedUser.name}
+                onChange={handleInputChange}
+              />
             </div>
             <div className="form-group">
               <label>Location</label>
-              <input type="text" name="location" value={editedUser.location} onChange={handleInputChange} />
+              <input
+                type="text"
+                name="location"
+                value={editedUser.location}
+                onChange={handleInputChange}
+              />
             </div>
             <div className="form-group">
               <label>Bio</label>
-              <textarea name="bio" value={editedUser.bio} onChange={handleInputChange}></textarea>
+              <textarea
+                name="bio"
+                value={editedUser.bio}
+                onChange={handleInputChange}
+              ></textarea>
             </div>
             <div className="modal-actions">
-              <button onClick={handleCloseModal} className="cancel-btn">Cancel</button>
-              <button onClick={handleSaveProfile} className="save-btn">Save Changes</button>
+              <button onClick={handleCloseModal} className="cancel-btn">
+                Cancel
+              </button>
+              <button onClick={handleSaveProfile} className="save-btn">
+                Save Changes
+              </button>
             </div>
           </div>
         </div>
       )}
 
       <style jsx>{`
-        .profile-page {
-          background: #f4f2ed;
+        .profile-page-container {
+          padding: 2.5rem 1rem;
+          background-color: #f0f2f5;
           min-height: 100vh;
-        }
-        .profile-header-container {
-            padding: 3rem 5% 1rem;
-            background: linear-gradient(to top, #f4f2ed, #ffffff);
-        }
-        .profile-header {
           display: flex;
-          align-items: center;
-          gap: 2.5rem;
-          max-width: 1100px;
-          margin: 0 auto;
-          position: relative;
+          justify-content: center;
+          align-items: flex-start;
+        }
+        .profile-card {
+          width: 100%;
+          max-width: 680px;
+          background: #fff;
+          border-radius: 16px;
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+          padding: 2rem;
+          text-align: center;
+        }
+        .profile-card-header {
+          margin-top: -60px;
+          margin-bottom: 1rem;
         }
         .profile-avatar {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-            border: 6px solid #fff;
-            z-index: 2;
-        }
-        .user-info {
-          flex-grow: 1;
-        }
-        .name-edit-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.25rem;
+          width: 120px;
+          height: 120px;
+          border-radius: 50%;
+          border: 5px solid #fff;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+          object-fit: cover;
         }
         .user-name {
-          font-size: 2.25rem;
-          font-weight: 800;
-          color: #1a1a1a;
+          font-size: 1.75rem;
+          font-weight: 700;
+          color: #1c1e21;
           margin: 0;
         }
-        .edit-profile-btn {
-          background-color: #fff;
-          border: 1px solid #ddd;
-          color: #333;
-          padding: 0.6rem 1.25rem;
-          border-radius: 25px;
-          cursor: pointer;
-          font-weight: 600;
-          display:flex;
-          align-items:center;
-          gap: 0.5rem;
-          transition: all 0.25s;
-          box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-        .edit-profile-btn:hover {
-          background-color: #f8f8f8;
-          transform: translateY(-2px);
-          box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
         .user-location {
-          color: #666;
-          margin: 0 0 0.75rem;
+          color: #65676b;
+          margin: 0.25rem 0 0.75rem;
           font-size: 1rem;
         }
         .user-bio {
-          color: #444;
-          margin: 0;
+          color: #65676b;
           font-size: 1rem;
-          max-width: 550px;
+          max-width: 450px;
+          margin: 0 auto 1.5rem;
         }
-        .user-stats-container {
-            max-width: 1100px;
-            margin: -2rem auto 0;
-            padding: 1.5rem 2rem;
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            border: 1px solid rgba(255,255,255,0.2);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-            position: relative;
-            z-index: 1;
-            transform: translateY(50px);
+        .profile-stats {
+          display: flex;
+          justify-content: space-around;
+          background: #f7f8fa;
+          border-radius: 12px;
+          padding: 1rem;
+          margin-bottom: 2rem;
         }
-        .user-stats {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 1.5rem;
-          text-align: center;
-        }
-        .stat {
-            padding: 1rem;
-            border-radius: 12px;
-            transition: background-color 0.25s, transform 0.25s;
-        }
-        .stat:hover {
-            background-color: rgba(255,255,255,0.8);
-            transform: translateY(-3px);
-        }
-        .stat-icon {
-            width: 32px;
-            height: 32px;
-            margin: 0 auto 0.75rem;
-            color: #c7a17a;
-            fill: currentColor;
+        .stat-item {
+          flex-basis: 25%;
         }
         .stat-value {
-          font-size: 1.75rem;
-          font-weight: 700;
-          color: #2a2a2a;
+          font-size: 1.5rem;
+          font-weight: 600;
+          color: #1c1e21;
         }
         .stat-label {
-            color: #777;
-            font-size: 0.9rem;
-            font-weight: 500;
+          color: #65676b;
+          font-size: 0.85rem;
         }
-        .user-badges-container {
-            padding: 6rem 5% 2rem;
-            max-width: 1100px;
-            margin: 0 auto;
+        .section-title {
+          color: #1c1e21;
+          font-size: 1.2rem;
+          font-weight: 600;
+          margin-bottom: 1rem;
+          text-align: left;
         }
-        .user-badges {
+        .badges-container {
           display: flex;
           flex-wrap: wrap;
+          gap: 0.75rem;
           justify-content: center;
-          gap: 1rem;
+          margin-bottom: 2rem;
         }
-        .badge {
-          background-color: #fff;
-          color: #555;
-          padding: 0.75rem 1.25rem;
+        .badge-item {
+          background-color: #fef9e7;
+          color: #d4a90f;
+          padding: 0.5rem 1rem;
           border-radius: 20px;
           font-size: 0.9rem;
+          font-weight: 500;
+        }
+        .edit-profile-btn {
+          width: 100%;
+          padding: 0.75rem;
+          font-size: 1rem;
           font-weight: 600;
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          border: 1px solid #eee;
-          box-shadow: 0 3px 8px rgba(0,0,0,0.04);
-          transition: all 0.25s;
+          color: #d4a90f;
+          background-color: #fef9e7;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: background-color 0.2s;
+          margin-bottom: 2rem;
         }
-        .badge:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            color: #c7a17a;
+        .edit-profile-btn:hover {
+          background-color: #fdf3d9;
         }
-        .badge-icon {
-            width: 18px;
-            height: 18px;
-            color: #c7a17a;
-            fill: currentColor;
+
+        .profile-content-section {
+          border-top: 1px solid #ddd;
+          padding-top: 1.5rem;
         }
-        
-        .activity-section {
-            padding: 2rem 5% 4rem;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-        .activity-tabs {
+        .content-tabs {
           display: flex;
           justify-content: center;
           gap: 1.5rem;
-          border-bottom: 1px solid #ddd;
-          margin-bottom: 2.5rem;
+          margin-bottom: 1.5rem;
+          border-bottom: 1px solid #e0e0e0;
         }
-        .activity-tabs button {
+        .content-tabs button {
           background: none;
           border: none;
-          padding: 1rem 0;
+          padding: 0.75rem 0;
           cursor: pointer;
-          font-size: 1.1rem;
-          color: #777;
-          position: relative;
+          font-size: 1rem;
+          color: #65676b;
           font-weight: 600;
+          position: relative;
         }
-        .activity-tabs button.active {
-          color: #c7a17a;
+        .content-tabs button.active {
+          color: #f5c518;
         }
-        .activity-tabs button.active::after {
-          content: '';
+        .content-tabs button.active::after {
+          content: "";
           position: absolute;
           bottom: -1px;
           left: 0;
           right: 0;
           height: 3px;
-          background-color: #c7a17a;
-          border-radius: 3px 3px 0 0;
+          background-color: #f5c518;
+        }
+        .content-list {
+          display: grid;
+          gap: 1rem;
+        }
+        .content-item-card {
+          background: #f7f8fa;
+          padding: 1.25rem;
+          border-radius: 12px;
+          text-align: left;
+        }
+        .post-content,
+        .review-content,
+        .comment-content {
+          margin: 0 0 1rem;
+          color: #1c1e21;
+          line-height: 1.5;
         }
 
-        .activity-content {
+        .item-meta {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 0.9rem;
+          color: #65676b;
         }
-        
-        .recent-activity-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
+        .post-actions {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
         }
-
-        .activity-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1.5rem;
-            background-color: #fff;
-            padding: 1.5rem;
-            border-radius: 12px;
-            border: 1px solid #eee;
-            transition: all 0.2s;
+        .action-item {
+          display: flex;
+          align-items: center;
+          gap: 0.4rem;
         }
-        .activity-item:hover {
-            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-            transform: translateY(-2px);
-        }
-        
-        .activity-icon {
-            font-size: 1.5rem;
-            color: #c7a17a;
-            margin-top: 4px;
-        }
-        
-        .activity-details {
-            flex-grow: 1;
-        }
-        
-        .activity-details p {
-            margin: 0;
-            color: #333;
-            font-size: 1rem;
-            line-height: 1.5;
+        .action-item svg {
+          stroke: #65676b;
         }
 
-        .review-content {
-            margin-top: 0.75rem;
-            border-left: 3px solid #e0d1bf;
-            padding-left: 1rem;
-            background-color: #fcfaf7;
-            border-radius: 4px;
+        .review-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 0.5rem;
         }
-        
-        .review-text {
-            color: #666 !important;
-            font-style: italic;
-            padding: 0.5rem 0;
+        .cafe-name {
+          font-size: 1.1rem;
+          font-weight: 600;
+          color: #1c1e21;
+          margin: 0;
         }
-
         .rating {
-            color: #ffc107;
-            margin-bottom: 0.25rem;
+          color: #ffc107;
+          font-size: 1rem;
         }
-        
-        .activity-timestamp {
-            color: #888;
-            font-size: 0.9rem;
-            flex-shrink: 0;
+        .comment-context {
+          font-style: italic;
+          color: #65676b;
+          margin-bottom: 0.5rem;
+          font-size: 0.9rem;
         }
 
-        .placeholder-content {
-            text-align: center;
-            padding: 4rem;
-            color: #888;
-            font-size: 1.2rem;
-            background: #fff;
-            border-radius: 12px;
-            border: 1px solid #eee;
+        /* Modal styles */
+        .modal-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(0, 0, 0, 0.6);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          z-index: 1000;
         }
-        
-        /* Modal styles from your original code - they are good */
-        
+        .modal-content {
+          background: #fff;
+          padding: 2rem;
+          border-radius: 12px;
+          width: 90%;
+          max-width: 450px;
+        }
+        .modal-content h2 {
+          margin-top: 0;
+        }
+        .close-btn {
+          position: absolute;
+          top: 1rem;
+          right: 1rem;
+          background: none;
+          border: none;
+          font-size: 1.5rem;
+          cursor: pointer;
+        }
+        .form-group {
+          margin-bottom: 1rem;
+        }
+        .form-group label {
+          display: block;
+          margin-bottom: 0.5rem;
+        }
+        .form-group input,
+        .form-group textarea {
+          width: 100%;
+          padding: 0.75rem;
+          border: 1px solid #ccc;
+          border-radius: 6px;
+        }
+        .modal-actions {
+          display: flex;
+          justify-content: flex-end;
+          gap: 1rem;
+          margin-top: 1.5rem;
+        }
+        .cancel-btn {
+          background-color: #eee;
+        }
+        .save-btn {
+          background-color: #f5c518;
+          color: #0f1115;
+          border: none;
+          padding: 0.6rem 1.2rem;
+          border-radius: 6px;
+          cursor: pointer;
+        }
       `}</style>
     </Layout>
   );
