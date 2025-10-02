@@ -1,9 +1,36 @@
+
+
 import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-// Coffee Waves SVG Component
+// --- SVG Icon Components ---
+
+const TargetedAudienceIcon = () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+        <circle cx="9" cy="7" r="4"></circle>
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+    </svg>
+);
+
+const DashboardInsightsIcon = () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <line x1="18" y1="20" x2="18" y2="10"></line>
+        <line x1="12" y1="20" x2="12" y2="4"></line>
+        <line x1="6" y1="20" x2="6" y2="14"></line>
+    </svg>
+);
+
+const IncreaseFootfallIcon = () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+        <polyline points="17 6 23 6 23 12"></polyline>
+    </svg>
+);
+
 const CoffeeWaves = () => (
   <div className="hero-waves">
     <svg
@@ -55,15 +82,13 @@ const useFadeIn = () => {
 const Home = () => {
   const fadeInRefs = useFadeIn();
 
-  // Handle hash navigation when coming from other pages
   useEffect(() => {
     const handleHashNavigation = () => {
       const hash = window.location.hash;
       if (hash) {
-        const elementId = hash.substring(1); // Remove the # symbol
+        const elementId = hash.substring(1);
         const element = document.getElementById(elementId);
         if (element) {
-          // Small delay to ensure page is fully loaded
           setTimeout(() => {
             element.scrollIntoView({
               behavior: "smooth",
@@ -73,13 +98,8 @@ const Home = () => {
         }
       }
     };
-
-    // Handle initial hash
     handleHashNavigation();
-
-    // Listen for hash changes
     window.addEventListener("hashchange", handleHashNavigation);
-
     return () => {
       window.removeEventListener("hashchange", handleHashNavigation);
     };
@@ -91,7 +111,9 @@ const Home = () => {
       <main>
         <header id="hero">
           <div className="container hero-content">
-            <h1>India’s First Coffee-Only Club</h1>
+            <h1>
+              <span className="black-text">India’s First</span> <span className="yellow-text">Coffee-Only Club</span>
+            </h1>
             <p>
               Discover cafés, connect with coffee lovers, and unlock exclusive
               brews. Because life’s too short for bad coffee.
@@ -263,18 +285,66 @@ const Home = () => {
             className="section fade-in"
             aria-labelledby="partner-heading"
             ref={(el) => (fadeInRefs.current[4] = el)}
-          >
-            <h2 id="partner-heading">Partner with BrewCrew</h2>
-            <p>
-              Ready to grow your coffee community? We give you direct access to
-              a loyal, coffee-first audience. Increase your visibility, build
-              customer loyalty, and get insights with our simple dashboard.
-            </p>
-            <a href="#contact" className="cta-button">
-              List Your Café → Partner Now
-            </a>
-          </section>
-
+            >
+            <div className="partner-grid-layout">
+                <div className="partner-section-container">
+                    <div className="partner-content">
+                        <h2 id="partner-heading">Partner with BrewCrew Club</h2>
+                        <p>
+                            Ready to grow your coffee community? We give you direct access to a loyal, coffee-first audience. Increase your visibility, build customer loyalty, and get insights with our simple dashboard.
+                        </p>
+                        <div className="partner-features">
+                            <div className="partner-feature-item">
+                                <div className="partner-icon-wrapper">
+                                    <TargetedAudienceIcon />
+                                </div>
+                                <div>
+                                    <h4>Targeted Audience</h4>
+                                    <p>Connect directly with 10,000+ dedicated coffee lovers.</p>
+                                </div>
+                            </div>
+                            <div className="partner-feature-item">
+                                <div className="partner-icon-wrapper">
+                                    <DashboardInsightsIcon />
+                                </div>
+                                <div>
+                                    <h4>Dashboard Insights</h4>
+                                    <p>Track customer visits, engagement, and loyalty with our analytics.</p>
+                                </div>
+                            </div>
+                            <div className="partner-feature-item">
+                                <div className="partner-icon-wrapper">
+                                    <IncreaseFootfallIcon />
+                                </div>
+                                <div>
+                                    <h4>Increase Footfall</h4>
+                                    <p>Drive more customers with exclusive perks and featured listings.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#contact" className="cta-button-dark">
+                            List Your Café &rarr;
+                        </a>
+                    </div>
+                </div>
+                <div className="community-stats-card">
+                    <h4>Community Stats</h4>
+                    <div className="stat-item">
+                        <div className="stat-number">10,234</div>
+                        <div className="stat-label">Active Members</div>
+                    </div>
+                    <div className="stat-item">
+                        <div className="stat-number">1,402</div>
+                        <div className="stat-label">Discussions</div>
+                    </div>
+                    <div className="stat-item">
+                        <div className="stat-number">24/7</div>
+                        <div className="stat-label">Always Active</div>
+                    </div>
+                </div>
+            </div>
+            </section>
+            
           <section
             id="contact"
             className="section fade-in"
@@ -330,6 +400,151 @@ const Home = () => {
         </div>
       </main>
       <Footer />
+       <style jsx>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+       h1 {
+        font-size: 3.5rem;
+        animation: fadeInUp 0.6s ease-out;
+       }
+      .black-text {
+        color: #1a1a1a;
+      }
+      .yellow-text {
+        color: #B8860B;
+      }
+
+      /* Partner Section Update */
+      .partner-grid-layout {
+        display: flex;
+        gap: 2rem;
+        align-items: flex-start;
+      }
+
+      .partner-section-container {
+        flex: 2.5;
+        background-color: #fff;
+        border: 1px solid #f0f0f0;
+        border-radius: 12px;
+        padding: 2.5rem;
+        text-align: left;
+    }
+    .partner-content h2 {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: #1a1a1a;
+        line-height: 1.2;
+        margin-bottom: 0.75rem;
+    }
+    
+    .partner-content > p {
+        max-width: 600px;
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 2.5rem;
+    }
+    .partner-features {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        margin-bottom: 2.5rem;
+    }
+    .partner-feature-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    .partner-icon-wrapper {
+        flex-shrink: 0;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background-color: #fdf8e1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #B8860B;
+    }
+    .partner-feature-item h4 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin: 0 0 0.25rem;
+        color: #1a1a1a;
+    }
+    .partner-feature-item p {
+        font-size: 0.95rem;
+        color: #555;
+        margin: 0;
+        line-height: 1.5;
+    }
+    .cta-button-dark {
+        display: inline-block;
+        background-color: #1a1a1a;
+        color: #fff;
+        padding: 0.75rem 1.5rem;
+        border-radius: 20px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: background-color 0.3s;
+        font-size: 0.95rem;
+    }
+    .cta-button-dark:hover {
+        background-color: #333;
+    }
+
+    /* Community Stats Card */
+    .community-stats-card {
+        flex: 1;
+        background-color: #fff;
+        border: 1px solid #f0f0f0;
+        border-radius: 12px;
+        padding: 1.5rem;
+    }
+    .community-stats-card h4 {
+        font-size: 1rem;
+        font-weight: 600;
+        margin: 0 0 1.5rem 0;
+        color: #333;
+        display:flex;
+        align-items:center;
+        gap: 0.5rem;
+    }
+     .community-stats-card h4::before {
+        content: '⚡️';
+        font-size: 1rem;
+    }
+    .stat-item {
+        margin-bottom: 1.5rem;
+    }
+    .stat-item:last-child {
+        margin-bottom: 0;
+    }
+    .stat-number {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #1a1a1a;
+        line-height: 1;
+    }
+    .stat-label {
+        font-size: 1rem;
+        color: #777;
+    }
+
+    @media (max-width: 992px) {
+      .partner-grid-layout {
+        flex-direction: column;
+      }
+    }
+    
+    `}</style>
     </div>
   );
 };

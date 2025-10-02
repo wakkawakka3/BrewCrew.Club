@@ -267,7 +267,9 @@ const getBadgeClass = (difficulty) => {
 
 const GuideHeader = () => (
   <header className="page-header text-center">
-    <h1>The Ultimate Coffee Guide</h1>
+    <h1>
+      <span className="black-text">The Ultimate</span> <span className="yellow-text">Coffee Guide</span>
+    </h1>
     <p>From bean to brew, your journey to coffee mastery starts here.</p>
   </header>
 );
@@ -477,7 +479,9 @@ const Guide = () => {
         <GuideHeader />
         <div className="container">
           <section className="section-enhanced">
-            <h2 className="section-title-enhanced">Brewing Methods</h2>
+            <h2 className="section-title-enhanced">
+              <span className="black-text">Brewing</span> <span className="yellow-text">Methods</span>
+              </h2>
             <p className="section-subtitle-enhanced">Click a method to see the full guide.</p>
             <div className="cafe-grid" style={{ marginTop: "3rem" }}>
               {brewingMethods.map((method) => (
@@ -496,6 +500,26 @@ const Guide = () => {
         onClose={() => setSelectedMethod(null)}
       />
        <style jsx>{`
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .black-text {
+          color: #1a1a1a;
+        }
+        .yellow-text {
+          color: #B8860B;
+        }
+        .page-header h1{
+          font-size: 3.5rem;
+          animation: fadeInUp 0.6s ease-out;
+        }
         /* Page Structure */
         .guide-page {
             padding-top: 2rem;
@@ -508,7 +532,7 @@ const Guide = () => {
           margin-bottom: 4rem;
         }
         .section-title-enhanced {
-          font-size: 2.5rem;
+          font-size: 3.5rem;
           font-weight: 700;
           color: var(--primary-color);
           text-align: center;

@@ -77,7 +77,9 @@ const AboutUs = () => {
         {/* Hero Section */}
         <header className="about-hero">
           <div className="hero-content container">
-            <h1>Our Story: The BrewCrew Journey</h1>
+            <h1 className="hero-title">
+              <span className="black-text">Our Story:</span> <span className="yellow-text">The BrewCrew Journey</span>
+            </h1>
             <p className="subtitle">
               From a simple idea to India's first coffee-only community.
             </p>
@@ -162,8 +164,24 @@ const AboutUs = () => {
       </div>
 
       <style jsx>{`
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
         .about-us-page {
           background: var(--off-white);
+        }
+        .black-text {
+          color: #1a1a1a;
+        }
+        .yellow-text {
+          color: #B8860B;
         }
 
         /* Hero Section */
@@ -176,12 +194,17 @@ const AboutUs = () => {
           text-align: center;
           border-bottom: 4px solid var(--accent-color);
         }
-        .hero-content h1 {
+        .hero-title {
           color: var(--text-light);
-          font-size: 3rem;
+          font-size: 3.5rem;
           font-weight: 700;
           margin-bottom: 0.5rem;
+          animation: fadeInUp 0.6s ease-out;
         }
+        .hero-title .black-text{
+          color: white;
+        }
+
         .hero-content .subtitle {
           font-size: 1.25rem;
           opacity: 0.9;
