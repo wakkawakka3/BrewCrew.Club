@@ -1,3 +1,4 @@
+
 import React from "react";
 import Layout from "../components/Layout";
 
@@ -209,6 +210,8 @@ const AboutUs = () => {
           font-size: 1.25rem;
           opacity: 0.9;
           color: var(--text-light);
+          animation: fadeInUp 0.6s ease-out 0.2s;
+          animation-fill-mode: both;
         }
 
         /* Common Section Styles */

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Layout from "../components/Layout";
 
+const SearchIcon = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>;
+
 const CafeCard = ({ name, description }) => (
   <a href="#" className="cafe-card">
     <div className="cafe-card-img">Image Placeholder</div>
@@ -22,7 +24,7 @@ const Cafes = () => {
         <header className="page-header">
           <h1 className="hero-title">
             <span className="black-text">Discover Our</span> <span className="yellow-text">Partner Cafés</span>
-            </h1>
+          </h1>
           <p>
             Explore the best coffee shops in your city, from hidden gems to your
             favorite local spots, all reviewed by our dedicated community.
@@ -31,13 +33,16 @@ const Cafes = () => {
         <section className="container">
           <div className="map-container">[Interactive Map Placeholder]</div>
           <div className="search-filter-bar">
-            <input
-              type="text"
-              className="search-input"
-              placeholder="Search by café name or city..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
+            <div className="search-box">
+                <SearchIcon />
+                <input
+                  type="text"
+                  className="search-input"
+                  placeholder="Search by café name or city..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+            </div>
             <select
               className="filter-dropdown"
               value={city}
@@ -111,6 +116,8 @@ const Cafes = () => {
           max-width: 600px;
           margin: 0 auto;
           color: #666;
+          animation: fadeInUp 0.6s ease-out 0.2s;
+          animation-fill-mode: both;
         }
         .container {
           max-width: 1200px;
@@ -127,21 +134,62 @@ const Cafes = () => {
           border-radius: 8px;
         }
         .search-filter-bar {
-          display: flex;
-          gap: 1rem;
-          margin-bottom: 2rem;
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            align-items: center;
+            flex-wrap: wrap;
         }
-        .search-input {
-          flex-grow: 1;
-          padding: 0.75rem 1rem;
-          border: 1px solid #ccc;
-          border-radius: 4px;
+        .search-box {
+            position: relative;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+        }
+        .search-box .search-input {
+            flex-grow: 1;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            font-size: 1rem;
+            background-color: var(--secondary-color);
+            transition: all 0.3s ease;
+            min-width: 250px;
+        }
+        .search-box .search-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.2);
+        }
+        .search-box svg {
+            position: absolute;
+            left: 1.25rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            pointer-events: none;
         }
         .filter-dropdown {
-          padding: 0.75rem;
-          border: 1px solid #ccc;
-          border-radius: 4px;
-          background: white;
+            padding: 1rem 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            background-color: var(--secondary-color);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23666%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.4-5.4-12.8z%22%2F%3E%3C%2Fsvg%3E');
+            background-repeat: no-repeat;
+            background-position: right 1.5rem center;
+            background-size: 0.65em auto;
+            padding-right: 3.5rem;
+        }
+        .filter-dropdown:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.2);
         }
         .cafe-grid {
           display: grid;

@@ -3,6 +3,7 @@ import Layout from "../components/Layout";
 import "../index.css";
 
 // --- SVG Icon Components ---
+const SearchIcon = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>;
 const Coffee = ({ className }) => (
   <svg
     className={className}
@@ -179,25 +180,96 @@ const brewingMethods = [
     ],
   },
   {
+    name: "AeroPress",
+    time: "2-3 min",
+    difficulty: "Easy",
+    ratio: "1:15",
+    description: "Versatile and clean, with a smooth, rich body.",
+    icon: Filter,
+    temperature: "80-90°C",
+    grindSize: "Medium",
+    equipment: ["AeroPress", "Filters", "Kettle", "Scale", "Timer"],
+    ingredients: ["15g coffee", "225ml water"],
+    detailedSteps: [
+      "Heat water to 80-90°C.",
+      "Assemble AeroPress with a rinsed filter.",
+      "Add 15g of medium-ground coffee.",
+      "Pour 225ml of water, stir, and wait 1-2 minutes.",
+      "Plunge slowly for 30 seconds.",
+      "Dilute to taste, if desired.",
+    ],
+    tips: [
+      "Experiment with the inverted method for a fuller body.",
+      "Lower water temperature can reduce acidity.",
+    ],
+  },
+  {
     name: "Cold Brew",
-    time: "16 hrs",
+    time: "12-24 hrs",
     difficulty: "Easy",
     ratio: "1:8",
     description: "Smooth, low-acidity coffee concentrate.",
     icon: Snowflake,
     temperature: "Room Temp",
-    grindSize: "Extra coarse",
-    equipment: ["Large jar", "Strainer", "Filters", "Scale"],
+    grindSize: "Coarse",
+    equipment: ["Jar or Toddy", "Strainer/filter", "Scale"],
     ingredients: ["100g coffee", "800ml water"],
     detailedSteps: [
-      "Combine 100g of extra coarse coffee with 800ml of water in a jar (1:8).",
-      "Stir, cover, and steep at room temperature for 16 hours.",
-      "Strain through a fine mesh, then filter through a paper filter for clarity.",
-      "Dilute to taste (start 1:1 with water or milk) and serve over ice.",
+      "Combine 100g of coarse-ground coffee with 800ml of water.",
+      "Stir gently to ensure all grounds are wet.",
+      "Steep for 12-24 hours at room temperature.",
+      "Filter the concentrate and store in the fridge.",
+      "Dilute 1:1 with water or milk to serve.",
     ],
     tips: [
-      "If bitter, shorten steep or coarsen the grind; if weak, lengthen steep slightly.",
-      "Store in the fridge for up to 2 weeks.",
+      "A longer steep time will create a stronger concentrate.",
+      "Use filtered water for a cleaner taste.",
+    ],
+  },
+    {
+    name: "Pour Over (Chemex)",
+    time: "4-5 min",
+    difficulty: "Medium",
+    ratio: "1:17",
+    description: "Exceptionally clean, balanced, and flavorful coffee.",
+    icon: Filter,
+    temperature: "94-98°C",
+    grindSize: "Medium-coarse",
+    equipment: ["Chemex", "Chemex filters", "Gooseneck kettle", "Scale", "Timer"],
+    ingredients: ["42g coffee", "700ml water"],
+    detailedSteps: [
+      "Heat water to 94-98°C.",
+      "Place the filter in the Chemex, rinse, and discard the water.",
+      "Add 42g of medium-coarse ground coffee.",
+      "Bloom the coffee with 100ml of water for 45 seconds.",
+      "Pour the remaining water in stages, finishing by 3:30.",
+      "Allow the coffee to finish dripping, remove the filter, and serve.",
+    ],
+    tips: [
+      "Ensure the filter is placed with the multi-layered side toward the spout.",
+      "A coarser grind will allow for a faster flow rate, preventing bitterness.",
+    ],
+  },
+  {
+    name: "Espresso Macchiato",
+    time: "1-2 min",
+    difficulty: "Medium",
+    ratio: "1:0.5",
+    description: "Espresso with a dollop of steamed milk foam.",
+    icon: Zap,
+    temperature: "65°C milk",
+    grindSize: "Fine (espresso)",
+    equipment: ["Espresso machine", "Milk pitcher"],
+    ingredients: ["18g coffee", "36-40ml espresso", "30ml milk"],
+    detailedSteps: [
+      "Extract a double shot of espresso (36-40ml).",
+      "Steam a small amount of milk to create a dense foam.",
+      "Add a dollop (about a tablespoon) of foam to the espresso.",
+      "Serve immediately.",
+    ],
+    tips: [
+      "Use whole milk for the best foam quality.",
+      "The goal is to mark the espresso with foam, not to mix it.",
     ],
   },
   {
@@ -264,15 +336,6 @@ const getBadgeClass = (difficulty) => {
 };
 
 // --- Sub-components ---
-
-const GuideHeader = () => (
-  <header className="page-header text-center">
-    <h1>
-      <span className="black-text">The Ultimate</span> <span className="yellow-text">Coffee Guide</span>
-    </h1>
-    <p>From bean to brew, your journey to coffee mastery starts here.</p>
-  </header>
-);
 
 const BrewingMethodCard = ({ method, onSelect }) => {
   const Icon = method.icon;
@@ -465,6 +528,7 @@ const BrewingMethodModal = ({ method, onClose }) => {
 
 const Guide = () => {
   const [selectedMethod, setSelectedMethod] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     document.body.style.overflow = selectedMethod ? "hidden" : "auto";
@@ -473,18 +537,33 @@ const Guide = () => {
     };
   }, [selectedMethod]);
 
+  const filteredMethods = brewingMethods.filter((method) =>
+    method.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <Layout>
       <div className="guide-page">
-        <GuideHeader />
         <div className="container">
           <section className="section-enhanced">
             <h2 className="section-title-enhanced">
-              <span className="black-text">Brewing</span> <span className="yellow-text">Methods</span>
+              <span className="black-text">Brewing</span> <span className="yellow-text">Guide</span>
               </h2>
-            <p className="section-subtitle-enhanced">Click a method to see the full guide.</p>
+            <p className="section-subtitle-enhanced">Find the perfect brewing method for your daily coffee.</p>
+            <div className="search-bar-container">
+                <div className="search-box-guide">
+                    <SearchIcon />
+                    <input
+                        type="text"
+                        placeholder="Search for a brewing method..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="search-input-guide"
+                    />
+                </div>
+            </div>
             <div className="cafe-grid" style={{ marginTop: "3rem" }}>
-              {brewingMethods.map((method) => (
+              {filteredMethods.map((method) => (
                 <BrewingMethodCard
                   key={method.name}
                   method={method}
@@ -541,12 +620,38 @@ const Guide = () => {
           align-items: center;
           justify-content: center;
           gap: 1rem;
+          animation: fadeInUp 0.6s ease-out;
         }
         .section-subtitle-enhanced {
           text-align: center;
           font-size: 1.1rem;
           color: var(--text-muted);
           margin-bottom: 3rem;
+          animation: fadeInUp 0.6s ease-out 0.2s;
+          animation-fill-mode: both;
+        }
+        .search-bar-container {
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+        .search-box-guide {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            background-color: #f7f7f7;
+            border: 1px solid #eee;
+            width: 100%;
+            max-width: 500px;
+        }
+        .search-input-guide {
+            border: none;
+            background: transparent;
+            outline: none;
+            width: 100%;
+            font-size: 1rem;
         }
 
         /* Modal Styles */

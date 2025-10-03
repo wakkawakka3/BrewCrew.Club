@@ -167,7 +167,7 @@ const userComments = [
   {
     id: 5,
     onPost: "Home coffee station complete!",
-    content: "That grinder is a beast! Congrats on the setup.",
+    content: "That grinder is a beast! Congrats on the a setup.",
     timestamp: "6 days ago",
   },
 ];
@@ -182,24 +182,38 @@ const StatItem = ({ value, label }) => (
 
 const BadgeItem = ({ label }) => <div className="badge-item">{label}</div>;
 
-const PostItem = ({ post }) => (
-  <div className="content-item-card">
-    <p className="post-content">{post.content}</p>
-    <div className="item-meta">
-      <div className="post-actions">
-        <div className="action-item">
-          <LikeIcon />
-          <span>{post.likes}</span>
+const PostItem = ({ post }) => {
+  const [liked, setLiked] = useState(false);
+  const [likeCount, setLikeCount] = useState(post.likes);
+
+  const handleLike = () => {
+    if (liked) {
+      setLikeCount(likeCount - 1);
+    } else {
+      setLikeCount(likeCount + 1);
+    }
+    setLiked(!liked);
+  };
+
+  return (
+    <div className="content-item-card">
+      <p className="post-content">{post.content}</p>
+      <div className="item-meta">
+        <div className="post-actions">
+          <div className={`action-item ${liked ? 'liked' : ''}`} onClick={handleLike}>
+            <LikeIcon />
+            <span>{likeCount}</span>
+          </div>
+          <div className="action-item">
+            <CommentIcon />
+            <span>{post.commentsCount}</span>
+          </div>
         </div>
-        <div className="action-item">
-          <CommentIcon />
-          <span>{post.commentsCount}</span>
-        </div>
+        <span className="timestamp">{post.timestamp}</span>
       </div>
-      <span className="timestamp">{post.timestamp}</span>
     </div>
-  </div>
-);
+  );
+};
 
 const ReviewItem = ({ review }) => (
   <div className="content-item-card">
@@ -540,9 +554,22 @@ const Profile = () => {
           display: flex;
           align-items: center;
           gap: 0.4rem;
+          cursor: pointer;
         }
         .action-item svg {
           stroke: #65676b;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
+        .action-item.liked svg {
+            fill: red;
+            stroke: red;
+            animation: heartbeat 0.5s ease;
         }
 
         .review-header {
