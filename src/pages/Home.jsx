@@ -395,10 +395,20 @@ const Home = () => {
       </main>
       <Footer />
       <style jsx>{`
+        .cta-button {
+          background: linear-gradient(to right, #f9d423, #ffc72c);
+          color: #3d2b1f;
+        }
         .hero-content {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
           text-align: center;
         }
         #community {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
           text-align: center;
         }
         @keyframes fadeInUp {
