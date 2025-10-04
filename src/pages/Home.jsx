@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import Contact from "../components/Contact";
 
 // --- SVG Icon Components ---
 
@@ -389,63 +390,17 @@ const Home = () => {
               </div>
             </div>
           </section>
-
-          <section
-            id="contact"
-            className="section fade-in"
-            ref={(el) => (fadeInRefs.current[5] = el)}
-          >
-            <h2>Message Us</h2>
-            <p>
-              Got a question? Want to partner with us? Or just want to say hi?
-              We're all ears.
-            </p>
-            <div className="contact-form-wrapper">
-              <form
-                className="contact-form"
-                action="https://formspree.io/f/xanbzonn"
-                method="POST"
-              >
-                <div className="form-group">
-                  <label htmlFor="name">Your Name</label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    placeholder="Enter your name"
-                    required
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="email">Your Email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="Enter your email"
-                    required
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="message">Your Message</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows="5"
-                    placeholder="What's on your mind?"
-                    required
-                  ></textarea>
-                </div>
-                <button className="cta-button" type="submit">
-                  Send Message
-                </button>
-              </form>
-            </div>
-          </section>
         </div>
+        <Contact />
       </main>
       <Footer />
       <style jsx>{`
+        .hero-content {
+          text-align: center;
+        }
+        #community {
+          text-align: center;
+        }
         @keyframes fadeInUp {
           from {
             opacity: 0;
