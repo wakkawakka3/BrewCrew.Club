@@ -122,9 +122,9 @@ const Features = () => {
           <h2>
             Premium Features for <span className="highlight">Coffee Lovers</span>
           </h2>
-          <p>
-            Built for enthusiasts, designed for discovery, perfected for the
-            love of coffee.
+          <p className="description">
+            Discover, discuss, and dive deep into the world of specialty
+            coffee. Your journey to the perfect cup starts here.
           </p>
         </div>
         <div className="features-grid">
@@ -158,16 +158,17 @@ const Features = () => {
         h2 {
           font-size: 2.8rem;
           color: #3d2b1f;
-          margin-bottom: 0.5rem;
+          margin-bottom: 1rem;
         }
         .highlight {
           color: #b8860b;
         }
-        .features-header p {
-          font-size: 1.1rem;
+        .description {
+          font-size: 1.25rem;
           color: #7a6a5a;
           max-width: 600px;
           margin: 0 auto;
+          line-height: 1.6;
         }
         .features-grid {
           display: grid;
@@ -180,6 +181,11 @@ const Features = () => {
           border-radius: 12px;
           border: 1px solid #eee;
           text-align: left;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature-card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
         .feature-icon {
           width: 48px;

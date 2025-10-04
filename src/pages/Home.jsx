@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Contact from "../components/Contact";
+import Features from "../components/Features";
 
 // --- SVG Icon Components ---
 
@@ -164,10 +165,10 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="main-content container">
+        <div className="main-content">
           <section
             id="about"
-            className="section fade-in"
+            className="section fade-in container"
             ref={(el) => (fadeInRefs.current[0] = el)}
           >
             <h2>About BrewCrew Club</h2>
@@ -192,57 +193,13 @@ const Home = () => {
             </div>
           </section>
 
-          <section
-            id="features"
-            className="section fade-in"
-            ref={(el) => (fadeInRefs.current[1] = el)}
-          >
-            <h2>Features & Benefits</h2>
-            <div className="features-grid">
-              <div className="feature-card">
-                <h3>For Users</h3>
-                <ul>
-                  <li>
-                    <strong>📍 Café Discovery:</strong> Find hidden gems and
-                    read honest reviews.
-                  </li>
-                  <li>
-                    <strong>👥 Community:</strong> Share your stories and
-                    connect with enthusiasts.
-                  </li>
-                  <li>
-                    <strong>🎟️ Rewards:</strong> Earn points and redeem them for
-                    free drinks.
-                  </li>
-                  <li>
-                    <strong>💳 Coffee Pass:</strong> Upcoming subscription for
-                    daily discounts.
-                  </li>
-                </ul>
-              </div>
-              <div className="feature-card">
-                <h3>For Cafés & Brands</h3>
-                <ul>
-                  <li>
-                    <strong>📊 Dashboard:</strong> Gain valuable insights into
-                    customer visits and loyalty.
-                  </li>
-                  <li>
-                    <strong>🎯 Targeted Audience:</strong> Connect directly with
-                    dedicated coffee lovers.
-                  </li>
-                  <li>
-                    <strong>🎟️ Increase Footfall:</strong> Drive more customers
-                    with exclusive perks.
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </section>
+          <div className="fade-in" ref={(el) => (fadeInRefs.current[1] = el)}>
+            <Features />
+          </div>
 
           <section
             id="how-it-works"
-            className="section fade-in"
+            className="section fade-in container"
             ref={(el) => (fadeInRefs.current[2] = el)}
           >
             <h2>How It Works</h2>
@@ -293,7 +250,7 @@ const Home = () => {
 
           <section
             id="community"
-            className="section fade-in"
+            className="section fade-in container"
             aria-labelledby="community-heading"
             ref={(el) => (fadeInRefs.current[3] = el)}
           >
@@ -309,7 +266,7 @@ const Home = () => {
 
           <section
             id="partner"
-            className="section fade-in"
+            className="section fade-in container"
             aria-labelledby="partner-heading"
             ref={(el) => (fadeInRefs.current[4] = el)}
           >
