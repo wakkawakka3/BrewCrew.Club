@@ -674,7 +674,7 @@ const Join = () => {
           }
         }
       `}</style>
-    </div>
+    </Layout>
   );
 };
 
