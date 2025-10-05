@@ -548,7 +548,7 @@ const Guide = () => {
           <section className="section-enhanced">
             <h2 className="section-title-enhanced">
               <span className="black-text">Brewing</span> <span className="yellow-text">Guide</span>
-              </h2>
+            </h2>
             <p className="section-subtitle-enhanced">Find the perfect brewing method for your daily coffee.</p>
             <div className="hero-pattern" aria-hidden="true"></div>
             <div className="search-bar-container">
@@ -606,6 +606,18 @@ const Guide = () => {
           gap: 1.5rem;
         }
 
+        .cafe-card {
+          border: 1px solid var(--border-color);
+          border-radius: 16px;
+          overflow: hidden;
+          box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .cafe-card:hover {
+          transform: translateY(-6px);
+          box-shadow: 0 14px 36px rgba(0,0,0,0.12);
+        }
+
         .cafe-card .cafe-card-img svg {
           width: 32px !important;
           height: 32px !important;
@@ -629,8 +641,8 @@ const Guide = () => {
           padding-top: 2rem;
         }
         .section-title-enhanced {
-          font-size: 3.5rem;
-          font-weight: 700;
+          font-size: 3.25rem;
+          font-weight: 600;
           color: var(--primary-color);
           text-align: center;
           margin-bottom: 1rem;
@@ -659,6 +671,12 @@ const Guide = () => {
             radial-gradient(circle at 80% 20%, rgba(245, 197, 24, 0.06) 0%, transparent 50%);
           animation: slideUp 8s ease-in-out infinite alternate;
           pointer-events: none;
+        }
+
+        /* Unify header spacing/size with other pages */
+        .section-enhanced .section-title-enhanced { font-size: 3.5rem; }
+        @media (max-width: 768px) {
+          .section-enhanced .section-title-enhanced { font-size: 2.5rem; }
         }
         .search-bar-container {
             margin-bottom: 2rem;

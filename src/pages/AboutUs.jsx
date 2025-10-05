@@ -176,7 +176,8 @@ const AboutUs = () => {
             }
         }
         .about-us-page {
-          background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+          background: linear-gradient(135deg, #0f1115 0%, #1a1d23 100%);
+          color: var(--text-light);
         }
         .black-text {
           color: #1a1a1a;
@@ -192,7 +193,7 @@ const AboutUs = () => {
           padding: 6rem 0;
           text-align: center;
           border-bottom: 4px solid var(--accent-color);
-          background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+          background: linear-gradient(135deg, rgba(245,197,24,0.08) 0%, rgba(245,197,24,0.02) 100%);
           overflow: hidden;
         }
         .about-hero::before {
@@ -206,14 +207,12 @@ const AboutUs = () => {
         }
         .hero-title {
           color: var(--text-light);
-          font-size: 3.5rem;
-          font-weight: 700;
+          font-size: 3.25rem;
+          font-weight: 600;
           margin-bottom: 0.5rem;
           animation: fadeInUp 0.6s ease-out;
         }
-        .hero-title .black-text{
-          color: white;
-        }
+        .hero-title .black-text{ color: var(--text-light); }
 
         .hero-content .subtitle {
           font-size: 1.25rem;
@@ -232,16 +231,16 @@ const AboutUs = () => {
           border-bottom: none;
         }
         .section-title {
-          font-size: 2.5rem;
-          font-weight: 700;
+          font-size: 2.25rem;
+          font-weight: 600;
           margin-bottom: 1rem;
-          color: var(--primary-color);
+          color: var(--text-light);
         }
         .section-intro {
           font-size: 1.1rem;
           max-width: 800px;
           margin: 0 auto 3rem auto;
-          color: var(--text-muted);
+          color: rgba(255,255,255,0.8);
         }
         .text-center {
           text-align: center;
@@ -255,13 +254,13 @@ const AboutUs = () => {
           margin-top: 3rem;
         }
         .value-card {
-          background: var(--secondary-color);
+          background: rgba(255,255,255,0.06);
           padding: 2rem;
           border-radius: 24px;
           text-align: center;
-          border: 1px solid var(--border-color);
+          border: 1px solid rgba(255,255,255,0.1);
           transition: all 0.3s ease;
-          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
         }
         .value-card:hover {
           transform: translateY(-8px);
@@ -293,7 +292,7 @@ const AboutUs = () => {
           top: 0;
           bottom: 0;
           width: 4px;
-          background: var(--border-color);
+          background: rgba(255,255,255,0.15);
           border-radius: 2px;
         }
         .timeline-item {
@@ -307,11 +306,11 @@ const AboutUs = () => {
           position: relative;
           width: 45%;
           padding: 2rem;
-          background: var(--secondary-color);
+          background: rgba(255,255,255,0.06);
           border-radius: 16px;
-          border: 1px solid var(--border-color);
+          border: 1px solid rgba(255,255,255,0.12);
           transition: all 0.3s ease;
-          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
         }
         .timeline-content:hover {
           transform: translateY(-8px);
@@ -334,11 +333,11 @@ const AboutUs = () => {
         }
         .timeline-item:nth-child(odd) .timeline-content::after {
           right: -20px;
-          border-left-color: var(--border-color);
+          border-left-color: rgba(255,255,255,0.12);
         }
         .timeline-item:nth-child(even) .timeline-content::after {
           left: -20px;
-          border-right-color: var(--border-color);
+          border-right-color: rgba(255,255,255,0.12);
         }
         .timeline-year {
           background: var(--accent-color);
@@ -371,12 +370,12 @@ const AboutUs = () => {
           margin: 0 auto;
         }
         .team-member-card {
-          background: var(--secondary-color);
+          background: rgba(255,255,255,0.06);
           padding: 2.5rem;
           border-radius: 20px;
           text-align: center;
-          border: 1px solid var(--border-color);
-          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+          border: 1px solid rgba(255,255,255,0.1);
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
           transition: all 0.3s ease;
         }
         

@@ -169,7 +169,7 @@ const Home = () => {
               <CoffeeIcon />
               <span>India's First Coffee-Only Community</span>
             </div>
-            <h1 className="hero-title">
+            <h1 className="hero-title" style={{ fontWeight: 600 }}>
               <span className="gradient-text">Discover</span> Amazing Cafés,
               <br />
               <span className="accent-text">Connect</span> with Coffee Lovers
@@ -208,16 +208,10 @@ const Home = () => {
           <CoffeeWaves />
         </header>
 
-        {/* Brand section replaced with subtle partner badges (optional) */}
-        <div className="brand-marquee">
-          <div className="marquee-content">
-            <div className="marquee-label">Partnered with community-loved cafés</div>
-            <div className="partner-badges">
-              <span className="badge">Blue Tokai</span>
-              <span className="badge">Third Wave</span>
-              <span className="badge">Subko</span>
-              <span className="badge">Sleepy Owl</span>
-            </div>
+        {/* Partnered Cafe Marquee */}
+        <div className="logo-marquee">
+          <div className="marquee-track">
+            <span>Blue Tokai</span> • <span>Third Wave</span> • <span>Subko</span> • <span>Sleepy Owl</span> • <span>Café Coffee Day</span> • <span>Blue Tokai</span> • <span>Third Wave</span> • <span>Subko</span> • <span>Sleepy Owl</span> • <span>Café Coffee Day</span> •
           </div>
         </div>
 
@@ -649,8 +643,8 @@ const Home = () => {
         }
 
         .hero-title {
-          font-size: 4rem;
-          font-weight: 800;
+          font-size: 3.5rem;
+          font-weight: 600;
           line-height: 1.1;
           margin-bottom: 1.5rem;
           letter-spacing: -0.02em;
