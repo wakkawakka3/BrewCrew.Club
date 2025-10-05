@@ -632,6 +632,10 @@ const Home = () => {
           0%, 100% { transform: translateY(0) rotate(0deg); }
           50% { transform: translateY(-20px) rotate(180deg); }
         }
+        
+        .coffee-bean {
+          animation: float 6s ease-in-out infinite;
+        }
 
         .hero-content {
           position: relative;
@@ -663,14 +667,14 @@ const Home = () => {
         }
 
         .gradient-text {
-          background: linear-gradient(135deg, #b8860b, #f4d03f);
+          background: linear-gradient(135deg, var(--accent-color), var(--yellow-600));
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
         }
 
         .accent-text {
-          color: #b8860b;
+          color: var(--accent-color);
         }
 
         .hero-description {
@@ -704,24 +708,24 @@ const Home = () => {
         }
 
         .cta-button.primary {
-          background: linear-gradient(135deg, #b8860b, #f4d03f);
+          background: linear-gradient(135deg, var(--accent-color), var(--yellow-600));
           color: white;
-          box-shadow: 0 4px 15px rgba(184, 134, 11, 0.3);
+          box-shadow: 0 4px 15px rgba(245, 197, 24, 0.3);
         }
 
         .cta-button.primary:hover {
           transform: translateY(-2px);
-          box-shadow: 0 8px 25px rgba(184, 134, 11, 0.4);
+          box-shadow: 0 8px 25px rgba(245, 197, 24, 0.4);
         }
 
         .cta-button.secondary {
           background: white;
-          color: #b8860b;
-          border: 2px solid #b8860b;
+          color: var(--accent-color);
+          border: 2px solid var(--accent-color);
         }
 
         .cta-button.secondary:hover {
-          background: #b8860b;
+          background: var(--accent-color);
           color: white;
         }
 
@@ -739,7 +743,7 @@ const Home = () => {
         .hero-stats .stat-number {
           font-size: 2.5rem;
           font-weight: 800;
-          color: #b8860b;
+          color: var(--accent-color);
           line-height: 1;
         }
 

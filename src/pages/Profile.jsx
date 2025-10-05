@@ -383,8 +383,8 @@ const Profile = () => {
 
       <style jsx>{`
         .profile-page-container {
-          padding: 2.5rem 1rem;
-          background-color: #f0f2f5;
+          padding: 1.5rem 1rem;
+          background: linear-gradient(135deg, #f5f5f7 0%, #ffffff 100%);
           min-height: 100vh;
           display: flex;
           justify-content: center;
@@ -394,22 +394,34 @@ const Profile = () => {
           width: 100%;
           max-width: 680px;
           background: #fff;
-          border-radius: 16px;
-          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+          border-radius: 24px;
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
           padding: 2rem;
           text-align: center;
+          border: 1px solid #d2d2d7;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .profile-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
         }
         .profile-card-header {
           margin-top: -60px;
           margin-bottom: 1rem;
         }
         .profile-avatar {
-          width: 120px;
-          height: 120px;
+          width: 140px;
+          height: 140px;
           border-radius: 50%;
-          border: 5px solid #fff;
-          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+          border: 6px solid #fff;
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
           object-fit: cover;
+          transition: transform 0.3s ease;
+        }
+        
+        .profile-avatar:hover {
+          transform: scale(1.05);
         }
         .user-name {
           font-size: 1.75rem;
@@ -431,10 +443,10 @@ const Profile = () => {
         .profile-stats {
           display: flex;
           justify-content: space-around;
-          background: #f7f8fa;
-          border-radius: 12px;
-          padding: 1rem;
-          margin-bottom: 2rem;
+          background: #f5f5f7;
+          border-radius: 16px;
+          padding: 1.5rem;
+          margin-bottom: 1.5rem;
         }
         .stat-item {
           flex-basis: 25%;
@@ -472,19 +484,21 @@ const Profile = () => {
         }
         .edit-profile-btn {
           width: 100%;
-          padding: 0.75rem;
+          padding: 1rem;
           font-size: 1rem;
           font-weight: 600;
-          color: #d4a90f;
-          background-color: #fef9e7;
+          color: #fff;
+          background: linear-gradient(135deg, #ff9500, #ff6b00);
           border: none;
-          border-radius: 8px;
+          border-radius: 16px;
           cursor: pointer;
-          transition: background-color 0.2s;
-          margin-bottom: 2rem;
+          transition: all 0.3s ease;
+          margin-bottom: 1.5rem;
+          box-shadow: 0 4px 15px rgba(255, 149, 0, 0.3);
         }
         .edit-profile-btn:hover {
-          background-color: #fdf3d9;
+          transform: translateY(-2px);
+          box-shadow: 0 8px 25px rgba(255, 149, 0, 0.4);
         }
 
         .profile-content-section {

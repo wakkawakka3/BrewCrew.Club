@@ -364,8 +364,8 @@ const BrewingMethodCard = ({ method, onSelect }) => {
       <div className="cafe-card-img">
         <Icon
           style={{
-            width: "48px",
-            height: "48px",
+            width: "32px",
+            height: "32px",
             color: "var(--accent-color)",
           }}
         />

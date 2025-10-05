@@ -313,7 +313,7 @@ const Forum = () => {
                 }
 
                 .gradient-text {
-                    background: linear-gradient(135deg, #b8860b, #f4d03f);
+                    background: linear-gradient(135deg, var(--accent-color), var(--yellow-600));
                     -webkit-background-clip: text;
                     -webkit-text-fill-color: transparent;
                     background-clip: text;
@@ -420,7 +420,7 @@ const Forum = () => {
 
                 .new-post-btn-sidebar {
                     width: 100%;
-                    background: linear-gradient(135deg, #b8860b, #f4d03f);
+                    background: linear-gradient(135deg, var(--accent-color), var(--yellow-600));
                     color: white;
                     border: none;
                     border-radius: 50px;
@@ -437,7 +437,7 @@ const Forum = () => {
 
                 .new-post-btn-sidebar:hover {
                     transform: translateY(-2px);
-                    box-shadow: 0 8px 25px rgba(184, 134, 11, 0.3);
+                    box-shadow: 0 8px 25px rgba(245, 197, 24, 0.3);
                 }
 
                 /* Enhanced Posts Section */
@@ -482,7 +482,7 @@ const Forum = () => {
                 }
 
                 .new-post-btn { 
-                    background: linear-gradient(135deg, #b8860b, #f4d03f); 
+                    background: linear-gradient(135deg, var(--accent-color), var(--yellow-600)); 
                     color: white; 
                     border: none; 
                     border-radius: 50px; 
@@ -498,7 +498,7 @@ const Forum = () => {
 
                 .new-post-btn:hover { 
                     transform: translateY(-2px);
-                    box-shadow: 0 8px 25px rgba(184, 134, 11, 0.3);
+                    box-shadow: 0 8px 25px rgba(245, 197, 24, 0.3);
                 }
 
                 /* Enhanced Post Cards */
@@ -541,7 +541,7 @@ const Forum = () => {
                     width: 56px; 
                     height: 56px; 
                     border-radius: 50%; 
-                    background: linear-gradient(135deg, #b8860b, #f4d03f); 
+                    background: linear-gradient(135deg, var(--accent-color), var(--yellow-600)); 
                     display: flex; 
                     align-items: center; 
                     justify-content: center; 
@@ -639,7 +639,7 @@ const Forum = () => {
                     display: inline-flex; 
                     align-items: center; 
                     gap: 0.5rem; 
-                    background: linear-gradient(135deg, #b8860b, #f4d03f); 
+                    background: linear-gradient(135deg, var(--accent-color), var(--yellow-600)); 
                     color: white; 
                     padding: 0.5rem 1rem; 
                     border-radius: 50px; 

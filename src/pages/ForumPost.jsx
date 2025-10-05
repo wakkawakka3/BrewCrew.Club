@@ -32,14 +32,38 @@ const ForumPost = () => {
     return (
         <Layout>
             <main className="post-detail-page">
-                <div className="post-container">
-                    <Link to="/forum" className="back-link"><ArrowLeftIcon /> Back to Forum</Link>
-                    <h1 className="post-title">{post.title}</h1>
-                    <div className="post-meta">
-                        <span>By {post.author}</span>
-                        <span>{post.time}</span>
-                        {post.location && <span>{post.location}</span>}
+                {/* Enhanced Hero Section */}
+                <header className="post-hero">
+                    <div className="hero-background">
+                        <div className="hero-pattern"></div>
                     </div>
+                    <div className="container hero-content">
+                        <div className="hero-badge">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                            </svg>
+                            <span>Forum Discussion</span>
+                        </div>
+                        <h1 className="hero-title">
+                            <span className="gradient-text">{post.title}</span>
+                        </h1>
+                        <div className="hero-meta">
+                            <span>By {post.author}</span>
+                            <span>•</span>
+                            <span>{post.time}</span>
+                            {post.location && (
+                                <>
+                                    <span>•</span>
+                                    <span>{post.location}</span>
+                                </>
+                            )}
+                        </div>
+                    </div>
+                </header>
+
+                <div className="container">
+                    <div className="post-container">
+                        <Link to="/forum" className="back-link"><ArrowLeftIcon /> Back to Forum</Link>
                     <p className="post-content">{post.content}</p>
 
                     <div className="comments-section">
@@ -76,30 +100,125 @@ const ForumPost = () => {
                         </div>
                     </div>
                 </div>
+                </div>
             </main>
             <style jsx>{`
+                /* Apple-inspired Design System */
+                @keyframes fadeInUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(30px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+
+                @keyframes float {
+                    0%, 100% { transform: translateY(0) rotate(0deg); }
+                    50% { transform: translateY(-10px) rotate(2deg); }
+                }
+
                 @keyframes like-animation {
                     0% { transform: scale(1); }
                     50% { transform: scale(1.2); }
                     100% { transform: scale(1); }
                 }
-                .comment-actions button.liked {
-                    animation: like-animation 0.3s ease-in-out;
-                    color: #0070f3;
+
+                /* Hero Section */
+                .post-hero {
+                    position: relative;
+                    padding: 6rem 0 4rem;
+                    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+                    overflow: hidden;
                 }
-                .post-detail-page {
-                    background-color: #f9f9f9;
-                    padding: 2rem 1rem;
+
+                .hero-background {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    pointer-events: none;
+                }
+
+                .hero-pattern {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background-image: radial-gradient(circle at 20% 80%, rgba(245, 197, 24, 0.08) 0%, transparent 50%),
+                                    radial-gradient(circle at 80% 20%, rgba(245, 197, 24, 0.06) 0%, transparent 50%);
+                    animation: float 8s ease-in-out infinite;
+                }
+
+                .hero-content {
+                    position: relative;
+                    z-index: 2;
+                    text-align: center;
+                    max-width: 800px;
+                    margin: 0 auto;
+                }
+
+                .hero-badge {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    background: rgba(245, 197, 24, 0.12);
+                    color: var(--accent-color);
+                    padding: 0.5rem 1rem;
+                    border-radius: 50px;
+                    font-size: 0.9rem;
+                    font-weight: 600;
+                    margin-bottom: 2rem;
+                }
+
+                .hero-title {
+                    font-size: 3rem;
+                    font-weight: 600;
+                    line-height: 1.1;
+                    margin-bottom: 1.5rem;
+                    letter-spacing: -0.02em;
+                }
+
+                .gradient-text {
+                    background: linear-gradient(135deg, var(--accent-color), var(--yellow-600));
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                }
+
+                .hero-meta {
                     display: flex;
+                    align-items: center;
                     justify-content: center;
+                    gap: 0.5rem;
+                    color: #86868b;
+                    font-size: 1rem;
+                    flex-wrap: wrap;
+                }
+
+                .container {
+                    max-width: 1200px;
+                    margin: 0 auto;
+                    padding: 0 1rem;
+                }
+
+                .post-detail-page {
+                    background: #f5f5f7;
+                    min-height: 100vh;
                 }
                 .post-container {
-                    background-color: #fff;
-                    border-radius: 8px;
-                    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+                    background: #fff;
+                    border-radius: 24px;
+                    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
                     max-width: 800px;
                     width: 100%;
-                    padding: 2.5rem;
+                    padding: 3rem;
+                    margin: 2rem auto;
+                    border: 1px solid #d2d2d7;
                 }
                 .back-link {
                     display: inline-flex;

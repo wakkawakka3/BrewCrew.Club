@@ -305,7 +305,7 @@ const Cafes = () => {
         }
 
         .gradient-text {
-          background: linear-gradient(135deg, #b8860b, #f4d03f);
+          background: linear-gradient(135deg, var(--accent-color), var(--yellow-600));
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;

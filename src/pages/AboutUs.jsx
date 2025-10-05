@@ -176,13 +176,13 @@ const AboutUs = () => {
             }
         }
         .about-us-page {
-          background: var(--off-white);
+          background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
         }
         .black-text {
           color: #1a1a1a;
         }
         .yellow-text {
-          color: #B8860B;
+          color: var(--accent-color);
         }
 
         /* Hero Section */
@@ -216,7 +216,7 @@ const AboutUs = () => {
 
         /* Common Section Styles */
         .container > section {
-          padding: 4rem 0;
+          padding: 3rem 0;
           border-bottom: 1px solid var(--border-color);
         }
         .container > section:last-child {
@@ -248,14 +248,15 @@ const AboutUs = () => {
         .value-card {
           background: var(--secondary-color);
           padding: 2rem;
-          border-radius: var(--border-radius-md);
+          border-radius: 24px;
           text-align: center;
           border: 1px solid var(--border-color);
           transition: all 0.3s ease;
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
         }
         .value-card:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+          transform: translateY(-8px);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
           border-color: var(--accent-color);
         }
         .value-icon {
@@ -296,15 +297,16 @@ const AboutUs = () => {
         .timeline-content {
           position: relative;
           width: 45%;
-          padding: 1.5rem;
+          padding: 2rem;
           background: var(--secondary-color);
-          border-radius: var(--border-radius-md);
+          border-radius: 16px;
           border: 1px solid var(--border-color);
           transition: all 0.3s ease;
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
         }
         .timeline-content:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+          transform: translateY(-8px);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
           border-color: var(--accent-color);
         }
         .timeline-item:nth-child(odd) .timeline-content {
@@ -361,10 +363,18 @@ const AboutUs = () => {
         }
         .team-member-card {
           background: var(--secondary-color);
-          padding: 2rem;
-          border-radius: var(--border-radius-md);
+          padding: 2.5rem;
+          border-radius: 20px;
           text-align: center;
           border: 1px solid var(--border-color);
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+          transition: all 0.3s ease;
+        }
+        
+        .team-member-card:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+          border-color: var(--accent-color);
         }
         .team-member-image-wrapper {
           width: 140px;
@@ -396,19 +406,20 @@ const AboutUs = () => {
         /* CTA Section */
         .cta-button {
           display: inline-block;
-          background: var(--primary-color);
+          background: linear-gradient(135deg, var(--primary-color), var(--gray-700));
           color: var(--text-light);
-          padding: 1rem 2.5rem;
+          padding: 1.2rem 3rem;
           border-radius: 50px;
           text-decoration: none;
           font-weight: 600;
           font-size: 1.1rem;
           transition: all 0.3s ease;
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
         }
         .cta-button:hover {
-          background: var(--accent-color);
+          background: linear-gradient(135deg, var(--accent-color), var(--yellow-600));
           transform: translateY(-3px);
-          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
         }
 
         @media (max-width: 768px) {

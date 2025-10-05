@@ -408,7 +408,7 @@ const Join = () => {
         }
 
         .gradient-text {
-          background: linear-gradient(135deg, #b8860b, #f4d03f);
+          background: linear-gradient(135deg, var(--accent-color), var(--yellow-600));
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
@@ -554,9 +554,9 @@ const Join = () => {
         }
 
         .interest-tag.selected {
-          background: linear-gradient(135deg, #b8860b, #f4d03f);
+          background: linear-gradient(135deg, var(--accent-color), var(--yellow-600));
           color: white;
-          border-color: #b8860b;
+          border-color: var(--accent-color);
         }
 
         /* CTA Button */
@@ -566,7 +566,7 @@ const Join = () => {
           justify-content: center;
           gap: 0.75rem;
           padding: 1.25rem 2rem;
-          background: linear-gradient(135deg, #b8860b, #f4d03f);
+          background: linear-gradient(135deg, var(--accent-color), var(--yellow-600));
           color: white;
           border: none;
           border-radius: 50px;
