@@ -176,8 +176,8 @@ const AboutUs = () => {
             }
         }
         .about-us-page {
-          background: linear-gradient(135deg, #0f1115 0%, #1a1d23 100%);
-          color: var(--text-light);
+          background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+          color: var(--primary-color);
         }
         .black-text {
           color: #1a1a1a;
@@ -189,11 +189,11 @@ const AboutUs = () => {
         /* Hero Section */
         .about-hero {
           position: relative;
-          color: var(--text-light);
+          color: var(--primary-color);
           padding: 6rem 0;
           text-align: center;
           border-bottom: 4px solid var(--accent-color);
-          background: linear-gradient(135deg, rgba(245,197,24,0.08) 0%, rgba(245,197,24,0.02) 100%);
+          background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
           overflow: hidden;
         }
         .about-hero::before {
@@ -206,13 +206,13 @@ const AboutUs = () => {
           animation: fadeInUp 0.6s ease-out;
         }
         .hero-title {
-          color: var(--text-light);
-          font-size: 3.25rem;
-          font-weight: 600;
+          color: var(--primary-color);
+          font-size: 4rem;
+          font-weight: 700;
           margin-bottom: 0.5rem;
           animation: fadeInUp 0.6s ease-out;
         }
-        .hero-title .black-text{ color: var(--text-light); }
+        .hero-title .black-text{ color: var(--primary-color); }
 
         .hero-content .subtitle {
           font-size: 1.25rem;
@@ -231,16 +231,16 @@ const AboutUs = () => {
           border-bottom: none;
         }
         .section-title {
-          font-size: 2.25rem;
-          font-weight: 600;
+          font-size: 3rem;
+          font-weight: 700;
           margin-bottom: 1rem;
-          color: var(--text-light);
+          color: var(--primary-color);
         }
         .section-intro {
           font-size: 1.1rem;
           max-width: 800px;
           margin: 0 auto 3rem auto;
-          color: rgba(255,255,255,0.8);
+          color: var(--text-muted);
         }
         .text-center {
           text-align: center;
@@ -254,13 +254,13 @@ const AboutUs = () => {
           margin-top: 3rem;
         }
         .value-card {
-          background: rgba(255,255,255,0.06);
+          background: var(--secondary-color);
           padding: 2rem;
           border-radius: 24px;
           text-align: center;
-          border: 1px solid rgba(255,255,255,0.1);
+          border: 1px solid var(--border-color);
           transition: all 0.3s ease;
-          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
         }
         .value-card:hover {
           transform: translateY(-8px);
@@ -292,7 +292,7 @@ const AboutUs = () => {
           top: 0;
           bottom: 0;
           width: 4px;
-          background: rgba(255,255,255,0.15);
+          background: var(--border-color);
           border-radius: 2px;
         }
         .timeline-item {
@@ -306,11 +306,11 @@ const AboutUs = () => {
           position: relative;
           width: 45%;
           padding: 2rem;
-          background: rgba(255,255,255,0.06);
+          background: var(--secondary-color);
           border-radius: 16px;
-          border: 1px solid rgba(255,255,255,0.12);
+          border: 1px solid var(--border-color);
           transition: all 0.3s ease;
-          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
         }
         .timeline-content:hover {
           transform: translateY(-8px);
@@ -333,11 +333,11 @@ const AboutUs = () => {
         }
         .timeline-item:nth-child(odd) .timeline-content::after {
           right: -20px;
-          border-left-color: rgba(255,255,255,0.12);
+          border-left-color: var(--border-color);
         }
         .timeline-item:nth-child(even) .timeline-content::after {
           left: -20px;
-          border-right-color: rgba(255,255,255,0.12);
+          border-right-color: var(--border-color);
         }
         .timeline-year {
           background: var(--accent-color);
@@ -370,12 +370,12 @@ const AboutUs = () => {
           margin: 0 auto;
         }
         .team-member-card {
-          background: rgba(255,255,255,0.06);
+          background: var(--secondary-color);
           padding: 2.5rem;
           border-radius: 20px;
           text-align: center;
-          border: 1px solid rgba(255,255,255,0.1);
-          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+          border: 1px solid var(--border-color);
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
           transition: all 0.3s ease;
         }
         

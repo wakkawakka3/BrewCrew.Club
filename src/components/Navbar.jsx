@@ -45,7 +45,7 @@ const Navbar = () => {
         <div className={`nav-links ${isOpen ? "is-open" : ""}`}>
           <NavLink to="/cafes" className={linkClass} onClick={closeMenu}>Cafés</NavLink>
           <NavLink to="/forum" className={linkClass} onClick={closeMenu}>Forum</NavLink>
-          <NavLink to="/blog" className={linkClass} onClick={closeMenu}>Guide</NavLink>
+          <NavLink to="/guide" className={linkClass} onClick={closeMenu}>Guide</NavLink>
           <NavLink to="/about-us" className={linkClass} onClick={closeMenu}>About Us</NavLink>
           <NavLink to="/profile" className={linkClass} onClick={closeMenu}>Profile</NavLink>
           <div className="nav-actions">

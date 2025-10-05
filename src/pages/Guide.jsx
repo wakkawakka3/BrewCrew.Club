@@ -641,8 +641,8 @@ const Guide = () => {
           padding-top: 2rem;
         }
         .section-title-enhanced {
-          font-size: 3.25rem;
-          font-weight: 600;
+          font-size: 4rem;
+          font-weight: 700;
           color: var(--primary-color);
           text-align: center;
           margin-bottom: 1rem;
@@ -676,7 +676,7 @@ const Guide = () => {
         /* Unify header spacing/size with other pages */
         .section-enhanced .section-title-enhanced { font-size: 3.5rem; }
         @media (max-width: 768px) {
-          .section-enhanced .section-title-enhanced { font-size: 2.5rem; }
+          .section-enhanced .section-title-enhanced { font-size: 2.75rem; }
         }
         .search-bar-container {
             margin-bottom: 2rem;

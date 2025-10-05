@@ -297,8 +297,8 @@ const Cafes = () => {
         }
 
         .hero-title {
-          font-size: 4rem;
-          font-weight: 800;
+          font-size: 3.5rem;
+          font-weight: 700;
           line-height: 1.1;
           margin-bottom: 1.5rem;
           letter-spacing: -0.02em;
