@@ -541,6 +541,28 @@ const Guide = () => {
     method.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  // Add a temporary logo tile at the beginning of the grid
+  const tempLogoCard = {
+    name: "BrewCrew Logo (Temp)",
+    description: "Brand placeholder",
+    time: "",
+    difficulty: "",
+    ratio: "",
+    icon: () => (
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+        <circle cx="12" cy="12" r="10" fill="#B8860B" />
+        <text x="12" y="16" textAnchor="middle" fontSize="10" fill="#fff">BCC</text>
+      </svg>
+    ),
+    temperature: "",
+    grindSize: "",
+    equipment: [],
+    ingredients: [],
+    detailedSteps: [],
+    tips: [],
+  };
+  const gridItems = [tempLogoCard, ...filteredMethods];
+
   return (
     <Layout>
       <div className="guide-page">
@@ -564,7 +586,7 @@ const Guide = () => {
                 </div>
             </div>
             <div className="cafe-grid" style={{ marginTop: "2rem" }}>
-              {filteredMethods.map((method) => (
+              {gridItems.map((method) => (
                 <BrewingMethodCard
                   key={method.name}
                   method={method}

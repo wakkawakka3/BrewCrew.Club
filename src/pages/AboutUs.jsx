@@ -203,14 +203,13 @@ const AboutUs = () => {
           background-image: radial-gradient(circle at 20% 80%, rgba(245, 197, 24, 0.08) 0%, transparent 50%),
                             radial-gradient(circle at 80% 20%, rgba(245, 197, 24, 0.06) 0%, transparent 50%);
           pointer-events: none;
-          animation: fadeInUp 0.6s ease-out;
         }
         .hero-title {
           color: var(--primary-color);
           font-size: 4rem;
           font-weight: 700;
           margin-bottom: 0.5rem;
-          animation: fadeInUp 0.6s ease-out;
+          /* animation removed for About Us */
         }
         .hero-title .black-text{ color: var(--primary-color); }
 
@@ -218,8 +217,7 @@ const AboutUs = () => {
           font-size: 1.25rem;
           opacity: 0.9;
           color: var(--text-light);
-          animation: fadeInUp 0.6s ease-out 0.2s;
-          animation-fill-mode: both;
+          /* animation removed for About Us */
         }
 
         /* Common Section Styles */

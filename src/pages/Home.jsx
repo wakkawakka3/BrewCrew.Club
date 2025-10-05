@@ -172,7 +172,7 @@ const Home = () => {
             <h1 className="hero-title" style={{ fontWeight: 600 }}>
               <span className="gradient-text">Discover</span> Amazing Cafés,
               <br />
-              <span className="accent-text">Connect</span> with Coffee Lovers
+              <span className="highlight-pill">Connect</span> with Coffee Lovers
             </h1>
             <p className="hero-description">
               Join thousands of coffee enthusiasts exploring hidden gems, sharing experiences, 
