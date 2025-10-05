@@ -208,25 +208,15 @@ const Home = () => {
           <CoffeeWaves />
         </header>
 
-        {/* Enhanced Brand Marquee */}
+        {/* Brand section replaced with subtle partner badges (optional) */}
         <div className="brand-marquee">
           <div className="marquee-content">
-            <div className="marquee-label">Trusted by leading coffee brands</div>
-          <div className="marquee-track">
-              <span className="brand-item">Starbucks</span>
-              <span className="brand-item">Blue Tokai Coffee</span>
-              <span className="brand-item">Third Wave Coffee</span>
-              <span className="brand-item">Dunkin'</span>
-              <span className="brand-item">Subko Coffee</span>
-              <span className="brand-item">Sleepy Owl</span>
-              <span className="brand-item">Café Coffee Day</span>
-              <span className="brand-item">Starbucks</span>
-              <span className="brand-item">Blue Tokai Coffee</span>
-              <span className="brand-item">Third Wave Coffee</span>
-              <span className="brand-item">Dunkin'</span>
-              <span className="brand-item">Subko Coffee</span>
-              <span className="brand-item">Sleepy Owl</span>
-              <span className="brand-item">Café Coffee Day</span>
+            <div className="marquee-label">Partnered with community-loved cafés</div>
+            <div className="partner-badges">
+              <span className="badge">Blue Tokai</span>
+              <span className="badge">Third Wave</span>
+              <span className="badge">Subko</span>
+              <span className="badge">Sleepy Owl</span>
             </div>
           </div>
         </div>
@@ -773,10 +763,19 @@ const Home = () => {
           letter-spacing: 0.1em;
         }
 
-        .marquee-track {
+        .partner-badges {
           display: flex;
-          gap: 3rem;
-          animation: marquee 30s linear infinite;
+          gap: 0.75rem;
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+
+        .badge {
+          background: rgba(255,255,255,0.08);
+          border: 1px solid rgba(255,255,255,0.12);
+          padding: 0.4rem 0.8rem;
+          border-radius: 999px;
+          font-size: 0.9rem;
         }
 
         .brand-item {
@@ -791,10 +790,7 @@ const Home = () => {
             opacity: 1;
         }
 
-        @keyframes marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
+        /* removed marquee animation */
 
         /* Section Headers */
         .section-header {

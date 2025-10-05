@@ -264,6 +264,14 @@ const Profile = () => {
 
   return (
     <Layout>
+      <header className="profile-hero">
+        <div className="hero-background"><div className="hero-pattern"></div></div>
+        <div className="container hero-content">
+          <div className="hero-badge"><span>Member Profile</span></div>
+          <h1 className="hero-title"><span className="gradient-text">Your Coffee Identity</span></h1>
+          <p className="hero-description">Highlights, activity, and badges — all in one place</p>
+        </div>
+      </header>
       <div className="profile-page-container">
         <div className="profile-card">
           <div className="profile-card-header">
@@ -382,6 +390,14 @@ const Profile = () => {
       )}
 
       <style jsx>{`
+        .profile-hero { position: relative; padding: 6rem 0 4rem; background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); overflow: hidden; }
+        .hero-background { position: absolute; inset: 0; pointer-events: none; }
+        .hero-pattern { position: absolute; inset: 0; background-image: radial-gradient(circle at 20% 80%, rgba(245, 197, 24, 0.08) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(245, 197, 24, 0.06) 0%, transparent 50%); animation: fadeInUp 0.6s ease-out; }
+        .hero-content { position: relative; z-index: 1; text-align: center; max-width: 800px; margin: 0 auto; }
+        .hero-badge { display: inline-flex; align-items: center; gap: .5rem; background: rgba(245,197,24,.12); color: var(--accent-color); padding: .5rem 1rem; border-radius: 999px; font-weight: 600; margin-bottom: 1rem; }
+        .hero-title { font-size: 3rem; font-weight: 800; letter-spacing: -0.02em; margin: 0 0 .5rem; }
+        .gradient-text { background: linear-gradient(135deg, var(--accent-color), var(--yellow-600)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-description { color: #666; max-width: 600px; margin: 0 auto; }
         .profile-page-container {
           padding: 1.5rem 1rem;
           background: linear-gradient(135deg, #f5f5f7 0%, #ffffff 100%);

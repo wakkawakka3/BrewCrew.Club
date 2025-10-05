@@ -550,6 +550,7 @@ const Guide = () => {
               <span className="black-text">Brewing</span> <span className="yellow-text">Guide</span>
               </h2>
             <p className="section-subtitle-enhanced">Find the perfect brewing method for your daily coffee.</p>
+            <div className="hero-pattern" aria-hidden="true"></div>
             <div className="search-bar-container">
                 <div className="search-box-guide">
                     <SearchIcon />
@@ -562,7 +563,7 @@ const Guide = () => {
                     />
                 </div>
             </div>
-            <div className="cafe-grid" style={{ marginTop: "3rem" }}>
+            <div className="cafe-grid" style={{ marginTop: "2rem" }}>
               {filteredMethods.map((method) => (
                 <BrewingMethodCard
                   key={method.name}
@@ -599,6 +600,21 @@ const Guide = () => {
           font-size: 3.5rem;
           animation: fadeInUp 0.6s ease-out;
         }
+        .cafe-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 1.5rem;
+        }
+
+        .cafe-card .cafe-card-img svg {
+          width: 32px !important;
+          height: 32px !important;
+        }
+
+        .heading-icon {
+          width: 32px;
+          height: 32px;
+        }
         /* Page Structure */
         .guide-page {
             padding-top: 2rem;
@@ -609,6 +625,8 @@ const Guide = () => {
         }
         .section-enhanced {
           margin-bottom: 4rem;
+          position: relative;
+          padding-top: 2rem;
         }
         .section-title-enhanced {
           font-size: 3.5rem;
@@ -629,6 +647,18 @@ const Guide = () => {
           margin-bottom: 3rem;
           animation: fadeInUp 0.6s ease-out 0.2s;
           animation-fill-mode: both;
+        }
+        .hero-pattern {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 140px;
+          background-image:
+            radial-gradient(circle at 20% 80%, rgba(245, 197, 24, 0.08) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(245, 197, 24, 0.06) 0%, transparent 50%);
+          animation: slideUp 8s ease-in-out infinite alternate;
+          pointer-events: none;
         }
         .search-bar-container {
             margin-bottom: 2rem;

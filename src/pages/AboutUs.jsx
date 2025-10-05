@@ -187,13 +187,22 @@ const AboutUs = () => {
 
         /* Hero Section */
         .about-hero {
-          background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-            url('https://images.unsplash.com/photo-1559925393-8be0ec4767c8?q=80&w=2070&auto=format&fit=crop')
-              center/cover no-repeat;
+          position: relative;
           color: var(--text-light);
           padding: 6rem 0;
           text-align: center;
           border-bottom: 4px solid var(--accent-color);
+          background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+          overflow: hidden;
+        }
+        .about-hero::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background-image: radial-gradient(circle at 20% 80%, rgba(245, 197, 24, 0.08) 0%, transparent 50%),
+                            radial-gradient(circle at 80% 20%, rgba(245, 197, 24, 0.06) 0%, transparent 50%);
+          pointer-events: none;
+          animation: fadeInUp 0.6s ease-out;
         }
         .hero-title {
           color: var(--text-light);
