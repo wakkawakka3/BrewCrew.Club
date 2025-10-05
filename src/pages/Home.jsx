@@ -151,12 +151,32 @@ const Home = () => {
     };
   }, []);
 
+  // Reveal on scroll
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 }
+    );
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="page-container">
       <Navbar />
       <main>
         {/* Enhanced Hero Section */}
-        <header id="hero" className="hero-section">
+        <header id="hero" className="hero-section cursor-glow" onMouseMove={(e) => {
+          const el = e.currentTarget; const rect = el.getBoundingClientRect();
+          el.style.setProperty('--glow-x', `${e.clientX - rect.left}px`);
+          el.style.setProperty('--glow-y', `${e.clientY - rect.top}px`);
+        }}>
           <div className="hero-background">
             <CoffeeBean className="bean-1" delay="0" />
             <CoffeeBean className="bean-2" delay="1" />
@@ -169,7 +189,7 @@ const Home = () => {
               <CoffeeIcon />
               <span>India's First Coffee-Only Community</span>
             </div>
-            <h1 className="hero-title" style={{ fontWeight: 600 }}>
+            <h1 className="hero-title glow-text" style={{ fontWeight: 600 }}>
               <span className="gradient-text">Discover</span> Amazing Cafés,
               <br />
               <span className="highlight-pill">Connect</span> with Coffee Lovers
@@ -286,7 +306,7 @@ const Home = () => {
             </div>
           </section>
 
-          <div className="fade-in" ref={(el) => (fadeInRefs.current[1] = el)}>
+          <div className="fade-in reveal" ref={(el) => (fadeInRefs.current[1] = el)}>
             <Features />
           </div>
 
@@ -407,7 +427,7 @@ const Home = () => {
           {/* Enhanced Community Section */}
           <section
             id="community"
-            className="community-section fade-in"
+            className="community-section fade-in smaller"
             aria-labelledby="community-heading"
             ref={(el) => (fadeInRefs.current[3] = el)}
           >
@@ -987,6 +1007,7 @@ const Home = () => {
           padding: 6rem 0;
           background: white;
         }
+        .community-section.smaller { padding: 4rem 0; }
 
         .community-content {
           display: grid;

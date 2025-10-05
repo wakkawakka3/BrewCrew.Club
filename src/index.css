@@ -331,6 +331,34 @@ h6 { font-size: var(--font-size-base); }
     animation: fadeInUp 0.6s ease-out;
   }
 
+  /* Cursor glow effect (applies when .cursor-glow is on a container) */
+  .cursor-glow {
+    position: relative;
+    isolation: isolate;
+  }
+  .cursor-glow::before {
+    content: "";
+    position: absolute;
+    inset: -10%;
+    background: radial-gradient(600px circle at var(--glow-x, -10%) var(--glow-y, -10%), rgba(245,197,24,.18), transparent 40%);
+    pointer-events: none;
+    z-index: 0;
+    transition: background-position 0.06s linear;
+  }
+  .cursor-glow .glow-text {
+    position: relative;
+    z-index: 1;
+    transition: text-shadow .15s ease-out, color .15s ease-out;
+  }
+  .cursor-glow .glow-text:hover {
+    color: var(--primary-color);
+    text-shadow: 0 0 18px rgba(245,197,24,.45);
+  }
+
+  /* Scroll reveal utility */
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .5s ease, transform .5s ease; }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
   /* Motion preferences */
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }

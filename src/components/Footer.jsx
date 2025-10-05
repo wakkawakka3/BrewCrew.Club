@@ -65,11 +65,7 @@ const Footer = () => {
                   <span>About Us</span>
                 </Link>
               </li>
-              <li>
-                <Link to="/profile">
-                  <span>Profile</span>
-                </Link>
-              </li>
+              
             </ul>
           </div>
 
