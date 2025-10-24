@@ -23,7 +23,7 @@
 - **Café Discovery**: Find hidden gem cafés near you with detailed reviews and ratings
 - **Community Forum**: Socialize and explore the world of coffee with other coffee lovers
 - **Brewing Guide**: Comprehensive coffee brewing methods and techniques
-- **User Profiles**: Personalized profiles with coffee preferences and activity feeds
+- **Community Features**: Connect with fellow coffee enthusiasts and share experiences
 - **Reviews & Ratings**: Honest café reviews and coffee recommendations
 
 ### Premium Features
@@ -65,7 +65,6 @@
 - **Cafés**: Interactive café discovery with search and filters
 - **Forum**: Community discussions and coffee conversations
 - **Guide**: Comprehensive coffee brewing methods and techniques
-- **Profile**: User profiles with activity feeds and preferences
 - **About Us**: Company information and team details
 - **Join**: User registration and onboarding
 
@@ -104,7 +103,7 @@ npm run build
 ## 🎯 Recent Updates
 
 - ✅ **Premium UI/UX**: Complete redesign with modern, clean interface
-- ✅ **Profile System**: Enhanced user profiles with activity feeds
+- ✅ **Community Features**: Enhanced community engagement and social features
 - ✅ **Code Optimization**: Clean, readable code with improved performance
 - ✅ **Responsive Design**: Mobile-first approach with perfect cross-device compatibility
 - ✅ **Accessibility**: WCAG compliant with proper ARIA labels and keyboard navigation

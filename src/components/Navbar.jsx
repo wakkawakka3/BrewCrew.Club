@@ -47,7 +47,6 @@ const Navbar = () => {
           <NavLink to="/forum" className={linkClass} onClick={closeMenu}>Forum</NavLink>
           <NavLink to="/blog" className={linkClass} onClick={closeMenu}>Guide</NavLink>
           <NavLink to="/about-us" className={linkClass} onClick={closeMenu}>About Us</NavLink>
-          <NavLink to="/profile" className={linkClass} onClick={closeMenu}>Profile</NavLink>
           <div className="nav-actions">
             <NavLink to="/join" className="join-button" onClick={closeMenu}>Join Us</NavLink>
           </div>

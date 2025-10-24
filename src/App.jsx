@@ -7,7 +7,6 @@ import ForumPost from "./pages/ForumPost";
 import Guide from "./pages/Guide";
 import AboutUs from "./pages/AboutUs";
 import Join from "./pages/Join";
-import Profile from "./pages/Profile";
 import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
@@ -20,7 +19,6 @@ function App() {
       <Route path="/blog" element={<Guide />} />
       <Route path="/about-us" element={<AboutUs />} />
       <Route path="/join" element={<Join />} />
-      <Route path="/profile" element={<Profile />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
